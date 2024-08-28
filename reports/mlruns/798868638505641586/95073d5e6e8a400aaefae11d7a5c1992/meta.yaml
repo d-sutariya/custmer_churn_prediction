@@ -1,0 +1,15 @@
+artifact_uri: file:///kaggle/working/mlruns/798868638505641586/95073d5e6e8a400aaefae11d7a5c1992/artifacts
+end_time: null
+entry_point_name: ''
+experiment_id: '798868638505641586'
+lifecycle_stage: active
+run_id: 95073d5e6e8a400aaefae11d7a5c1992
+run_name: efficient-moose-895
+run_uuid: 95073d5e6e8a400aaefae11d7a5c1992
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1724088035636
+status: 1
+tags: []
+user_id: unknown

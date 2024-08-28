@@ -1,0 +1,15 @@
+artifact_uri: file:///kaggle/working/mlruns/798868638505641586/e96064e7b12f44ccb9857b23eb740748/artifacts
+end_time: null
+entry_point_name: ''
+experiment_id: '798868638505641586'
+lifecycle_stage: active
+run_id: e96064e7b12f44ccb9857b23eb740748
+run_name: silent-flea-230
+run_uuid: e96064e7b12f44ccb9857b23eb740748
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1724088003094
+status: 1
+tags: []
+user_id: unknown

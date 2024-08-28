@@ -1,0 +1,15 @@
+artifact_uri: file:///kaggle/working/mlruns/798868638505641586/8214b2c9e279497c9874fb3cb2703fcd/artifacts
+end_time: null
+entry_point_name: ''
+experiment_id: '798868638505641586'
+lifecycle_stage: active
+run_id: 8214b2c9e279497c9874fb3cb2703fcd
+run_name: clean-stag-284
+run_uuid: 8214b2c9e279497c9874fb3cb2703fcd
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1724088023236
+status: 1
+tags: []
+user_id: unknown

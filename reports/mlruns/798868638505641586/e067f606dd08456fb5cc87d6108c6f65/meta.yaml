@@ -1,0 +1,15 @@
+artifact_uri: file:///kaggle/working/mlruns/798868638505641586/e067f606dd08456fb5cc87d6108c6f65/artifacts
+end_time: null
+entry_point_name: ''
+experiment_id: '798868638505641586'
+lifecycle_stage: active
+run_id: e067f606dd08456fb5cc87d6108c6f65
+run_name: respected-smelt-28
+run_uuid: e067f606dd08456fb5cc87d6108c6f65
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1724088038957
+status: 1
+tags: []
+user_id: unknown

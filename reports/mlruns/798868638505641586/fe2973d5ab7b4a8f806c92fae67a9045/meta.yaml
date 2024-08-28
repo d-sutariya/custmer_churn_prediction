@@ -1,0 +1,15 @@
+artifact_uri: file:///kaggle/working/mlruns/798868638505641586/fe2973d5ab7b4a8f806c92fae67a9045/artifacts
+end_time: null
+entry_point_name: ''
+experiment_id: '798868638505641586'
+lifecycle_stage: active
+run_id: fe2973d5ab7b4a8f806c92fae67a9045
+run_name: bouncy-hound-915
+run_uuid: fe2973d5ab7b4a8f806c92fae67a9045
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1724088048853
+status: 1
+tags: []
+user_id: unknown

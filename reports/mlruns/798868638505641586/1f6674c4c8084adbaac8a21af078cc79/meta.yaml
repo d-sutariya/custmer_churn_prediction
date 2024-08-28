@@ -1,0 +1,15 @@
+artifact_uri: file:///kaggle/working/mlruns/798868638505641586/1f6674c4c8084adbaac8a21af078cc79/artifacts
+end_time: null
+entry_point_name: ''
+experiment_id: '798868638505641586'
+lifecycle_stage: active
+run_id: 1f6674c4c8084adbaac8a21af078cc79
+run_name: carefree-carp-823
+run_uuid: 1f6674c4c8084adbaac8a21af078cc79
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1724088090277
+status: 1
+tags: []
+user_id: unknown

@@ -1,0 +1,15 @@
+artifact_uri: file:///kaggle/working/mlruns/798868638505641586/7c7209ccec6744e48e4b133398e3e2a7/artifacts
+end_time: null
+entry_point_name: ''
+experiment_id: '798868638505641586'
+lifecycle_stage: active
+run_id: 7c7209ccec6744e48e4b133398e3e2a7
+run_name: useful-sow-993
+run_uuid: 7c7209ccec6744e48e4b133398e3e2a7
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1724088021942
+status: 1
+tags: []
+user_id: unknown

@@ -1,0 +1,15 @@
+artifact_uri: file:///kaggle/working/mlruns/798868638505641586/a7586aabd60d4ca88518012d9cabe445/artifacts
+end_time: null
+entry_point_name: ''
+experiment_id: '798868638505641586'
+lifecycle_stage: active
+run_id: a7586aabd60d4ca88518012d9cabe445
+run_name: righteous-bird-775
+run_uuid: a7586aabd60d4ca88518012d9cabe445
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1724088080510
+status: 1
+tags: []
+user_id: unknown

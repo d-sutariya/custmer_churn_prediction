@@ -1,0 +1,15 @@
+artifact_uri: file:///kaggle/working/mlruns/798868638505641586/fa93298bbfb74fca944d94e82e5ed0f1/artifacts
+end_time: null
+entry_point_name: ''
+experiment_id: '798868638505641586'
+lifecycle_stage: active
+run_id: fa93298bbfb74fca944d94e82e5ed0f1
+run_name: unleashed-gnu-775
+run_uuid: fa93298bbfb74fca944d94e82e5ed0f1
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1724087972240
+status: 1
+tags: []
+user_id: unknown

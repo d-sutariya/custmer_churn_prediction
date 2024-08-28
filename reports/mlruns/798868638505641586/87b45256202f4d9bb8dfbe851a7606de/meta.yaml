@@ -1,0 +1,15 @@
+artifact_uri: file:///kaggle/working/mlruns/798868638505641586/87b45256202f4d9bb8dfbe851a7606de/artifacts
+end_time: null
+entry_point_name: ''
+experiment_id: '798868638505641586'
+lifecycle_stage: active
+run_id: 87b45256202f4d9bb8dfbe851a7606de
+run_name: glamorous-shrike-785
+run_uuid: 87b45256202f4d9bb8dfbe851a7606de
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1724088092264
+status: 1
+tags: []
+user_id: unknown

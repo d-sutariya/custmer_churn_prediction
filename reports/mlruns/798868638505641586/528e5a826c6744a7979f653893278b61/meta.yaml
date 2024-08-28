@@ -1,0 +1,15 @@
+artifact_uri: file:///kaggle/working/mlruns/798868638505641586/528e5a826c6744a7979f653893278b61/artifacts
+end_time: null
+entry_point_name: ''
+experiment_id: '798868638505641586'
+lifecycle_stage: active
+run_id: 528e5a826c6744a7979f653893278b61
+run_name: illustrious-roo-992
+run_uuid: 528e5a826c6744a7979f653893278b61
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1724088113408
+status: 1
+tags: []
+user_id: unknown

@@ -1,0 +1,15 @@
+artifact_uri: file:///kaggle/working/mlruns/798868638505641586/dc24e2c118bc4f8c85fa1e2851b4a7a3/artifacts
+end_time: null
+entry_point_name: ''
+experiment_id: '798868638505641586'
+lifecycle_stage: active
+run_id: dc24e2c118bc4f8c85fa1e2851b4a7a3
+run_name: intrigued-worm-298
+run_uuid: dc24e2c118bc4f8c85fa1e2851b4a7a3
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1724088064661
+status: 1
+tags: []
+user_id: unknown

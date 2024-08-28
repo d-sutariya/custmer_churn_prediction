@@ -1,0 +1,15 @@
+artifact_uri: file:///kaggle/working/mlruns/798868638505641586/28c3af3cbf6a4b5ab8c72e1fde32439d/artifacts
+end_time: null
+entry_point_name: ''
+experiment_id: '798868638505641586'
+lifecycle_stage: active
+run_id: 28c3af3cbf6a4b5ab8c72e1fde32439d
+run_name: upset-goose-127
+run_uuid: 28c3af3cbf6a4b5ab8c72e1fde32439d
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1724087977150
+status: 1
+tags: []
+user_id: unknown

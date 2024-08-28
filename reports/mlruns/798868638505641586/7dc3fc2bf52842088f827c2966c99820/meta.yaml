@@ -1,0 +1,15 @@
+artifact_uri: file:///kaggle/working/mlruns/798868638505641586/7dc3fc2bf52842088f827c2966c99820/artifacts
+end_time: null
+entry_point_name: ''
+experiment_id: '798868638505641586'
+lifecycle_stage: active
+run_id: 7dc3fc2bf52842088f827c2966c99820
+run_name: ambitious-shrew-895
+run_uuid: 7dc3fc2bf52842088f827c2966c99820
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1724088054895
+status: 1
+tags: []
+user_id: unknown

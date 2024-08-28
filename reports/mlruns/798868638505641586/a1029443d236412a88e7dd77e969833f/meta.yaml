@@ -1,0 +1,15 @@
+artifact_uri: file:///kaggle/working/mlruns/798868638505641586/a1029443d236412a88e7dd77e969833f/artifacts
+end_time: null
+entry_point_name: ''
+experiment_id: '798868638505641586'
+lifecycle_stage: active
+run_id: a1029443d236412a88e7dd77e969833f
+run_name: selective-vole-617
+run_uuid: a1029443d236412a88e7dd77e969833f
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1724088054367
+status: 1
+tags: []
+user_id: unknown

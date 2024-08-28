@@ -1,0 +1,15 @@
+artifact_uri: file:///kaggle/working/mlruns/798868638505641586/d0388b274def4d7fbca700d0c31de4c5/artifacts
+end_time: null
+entry_point_name: ''
+experiment_id: '798868638505641586'
+lifecycle_stage: active
+run_id: d0388b274def4d7fbca700d0c31de4c5
+run_name: skittish-carp-836
+run_uuid: d0388b274def4d7fbca700d0c31de4c5
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1724088040151
+status: 1
+tags: []
+user_id: unknown

@@ -1,0 +1,15 @@
+artifact_uri: file:///kaggle/working/mlruns/798868638505641586/4b7c7f71aff943389c9c809b4c622d98/artifacts
+end_time: null
+entry_point_name: ''
+experiment_id: '798868638505641586'
+lifecycle_stage: active
+run_id: 4b7c7f71aff943389c9c809b4c622d98
+run_name: sincere-shad-922
+run_uuid: 4b7c7f71aff943389c9c809b4c622d98
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1724088068575
+status: 1
+tags: []
+user_id: unknown

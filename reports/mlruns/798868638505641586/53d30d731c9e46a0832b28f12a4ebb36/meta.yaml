@@ -1,0 +1,15 @@
+artifact_uri: file:///kaggle/working/mlruns/798868638505641586/53d30d731c9e46a0832b28f12a4ebb36/artifacts
+end_time: null
+entry_point_name: ''
+experiment_id: '798868638505641586'
+lifecycle_stage: active
+run_id: 53d30d731c9e46a0832b28f12a4ebb36
+run_name: gregarious-swan-110
+run_uuid: 53d30d731c9e46a0832b28f12a4ebb36
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1724088148449
+status: 1
+tags: []
+user_id: unknown

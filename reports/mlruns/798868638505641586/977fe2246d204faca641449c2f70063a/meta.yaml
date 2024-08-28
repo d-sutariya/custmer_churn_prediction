@@ -1,0 +1,15 @@
+artifact_uri: file:///kaggle/working/mlruns/798868638505641586/977fe2246d204faca641449c2f70063a/artifacts
+end_time: null
+entry_point_name: ''
+experiment_id: '798868638505641586'
+lifecycle_stage: active
+run_id: 977fe2246d204faca641449c2f70063a
+run_name: unique-doe-155
+run_uuid: 977fe2246d204faca641449c2f70063a
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1724088022650
+status: 1
+tags: []
+user_id: unknown

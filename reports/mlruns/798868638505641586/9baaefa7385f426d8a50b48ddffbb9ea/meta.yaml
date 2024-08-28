@@ -1,0 +1,15 @@
+artifact_uri: file:///kaggle/working/mlruns/798868638505641586/9baaefa7385f426d8a50b48ddffbb9ea/artifacts
+end_time: null
+entry_point_name: ''
+experiment_id: '798868638505641586'
+lifecycle_stage: active
+run_id: 9baaefa7385f426d8a50b48ddffbb9ea
+run_name: unequaled-shad-898
+run_uuid: 9baaefa7385f426d8a50b48ddffbb9ea
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1724088152803
+status: 1
+tags: []
+user_id: unknown

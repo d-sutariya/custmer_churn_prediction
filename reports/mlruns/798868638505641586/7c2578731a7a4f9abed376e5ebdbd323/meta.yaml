@@ -1,0 +1,15 @@
+artifact_uri: file:///kaggle/working/mlruns/798868638505641586/7c2578731a7a4f9abed376e5ebdbd323/artifacts
+end_time: null
+entry_point_name: ''
+experiment_id: '798868638505641586'
+lifecycle_stage: active
+run_id: 7c2578731a7a4f9abed376e5ebdbd323
+run_name: clean-auk-97
+run_uuid: 7c2578731a7a4f9abed376e5ebdbd323
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1724088099161
+status: 1
+tags: []
+user_id: unknown

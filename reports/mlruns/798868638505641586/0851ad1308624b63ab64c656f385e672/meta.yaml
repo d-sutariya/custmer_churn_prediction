@@ -1,0 +1,15 @@
+artifact_uri: file:///kaggle/working/mlruns/798868638505641586/0851ad1308624b63ab64c656f385e672/artifacts
+end_time: null
+entry_point_name: ''
+experiment_id: '798868638505641586'
+lifecycle_stage: active
+run_id: 0851ad1308624b63ab64c656f385e672
+run_name: gaudy-crab-198
+run_uuid: 0851ad1308624b63ab64c656f385e672
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1724088052193
+status: 1
+tags: []
+user_id: unknown

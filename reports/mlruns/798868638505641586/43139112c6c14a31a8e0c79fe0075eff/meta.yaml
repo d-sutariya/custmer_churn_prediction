@@ -1,0 +1,15 @@
+artifact_uri: file:///kaggle/working/mlruns/798868638505641586/43139112c6c14a31a8e0c79fe0075eff/artifacts
+end_time: null
+entry_point_name: ''
+experiment_id: '798868638505641586'
+lifecycle_stage: active
+run_id: 43139112c6c14a31a8e0c79fe0075eff
+run_name: aged-vole-794
+run_uuid: 43139112c6c14a31a8e0c79fe0075eff
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1724088145135
+status: 1
+tags: []
+user_id: unknown

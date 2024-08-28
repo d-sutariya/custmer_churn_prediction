@@ -1,0 +1,15 @@
+artifact_uri: file:///kaggle/working/mlruns/798868638505641586/550a1fb95dfd48748c3485e92bcf6019/artifacts
+end_time: null
+entry_point_name: ''
+experiment_id: '798868638505641586'
+lifecycle_stage: active
+run_id: 550a1fb95dfd48748c3485e92bcf6019
+run_name: calm-roo-106
+run_uuid: 550a1fb95dfd48748c3485e92bcf6019
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1724088051355
+status: 1
+tags: []
+user_id: unknown

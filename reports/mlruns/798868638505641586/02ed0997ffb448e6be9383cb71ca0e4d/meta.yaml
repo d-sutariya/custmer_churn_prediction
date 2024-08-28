@@ -1,0 +1,15 @@
+artifact_uri: file:///kaggle/working/mlruns/798868638505641586/02ed0997ffb448e6be9383cb71ca0e4d/artifacts
+end_time: null
+entry_point_name: ''
+experiment_id: '798868638505641586'
+lifecycle_stage: active
+run_id: 02ed0997ffb448e6be9383cb71ca0e4d
+run_name: fun-turtle-7
+run_uuid: 02ed0997ffb448e6be9383cb71ca0e4d
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1724088090802
+status: 1
+tags: []
+user_id: unknown

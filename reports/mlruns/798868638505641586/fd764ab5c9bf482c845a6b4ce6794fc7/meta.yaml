@@ -1,0 +1,15 @@
+artifact_uri: file:///kaggle/working/mlruns/798868638505641586/fd764ab5c9bf482c845a6b4ce6794fc7/artifacts
+end_time: null
+entry_point_name: ''
+experiment_id: '798868638505641586'
+lifecycle_stage: active
+run_id: fd764ab5c9bf482c845a6b4ce6794fc7
+run_name: smiling-eel-510
+run_uuid: fd764ab5c9bf482c845a6b4ce6794fc7
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1724088047243
+status: 1
+tags: []
+user_id: unknown

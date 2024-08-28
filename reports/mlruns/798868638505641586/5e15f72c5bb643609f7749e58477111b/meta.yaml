@@ -1,0 +1,15 @@
+artifact_uri: file:///kaggle/working/mlruns/798868638505641586/5e15f72c5bb643609f7749e58477111b/artifacts
+end_time: null
+entry_point_name: ''
+experiment_id: '798868638505641586'
+lifecycle_stage: active
+run_id: 5e15f72c5bb643609f7749e58477111b
+run_name: handsome-dove-503
+run_uuid: 5e15f72c5bb643609f7749e58477111b
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1724088134659
+status: 1
+tags: []
+user_id: unknown

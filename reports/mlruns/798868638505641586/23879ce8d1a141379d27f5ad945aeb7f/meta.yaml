@@ -1,0 +1,15 @@
+artifact_uri: file:///kaggle/working/mlruns/798868638505641586/23879ce8d1a141379d27f5ad945aeb7f/artifacts
+end_time: null
+entry_point_name: ''
+experiment_id: '798868638505641586'
+lifecycle_stage: active
+run_id: 23879ce8d1a141379d27f5ad945aeb7f
+run_name: masked-fawn-333
+run_uuid: 23879ce8d1a141379d27f5ad945aeb7f
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1724088008613
+status: 1
+tags: []
+user_id: unknown

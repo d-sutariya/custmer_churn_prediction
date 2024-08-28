@@ -1,0 +1,15 @@
+artifact_uri: file:///kaggle/working/mlruns/798868638505641586/f822cc2c0b20400f81252636f89f32db/artifacts
+end_time: null
+entry_point_name: ''
+experiment_id: '798868638505641586'
+lifecycle_stage: active
+run_id: f822cc2c0b20400f81252636f89f32db
+run_name: merciful-goat-814
+run_uuid: f822cc2c0b20400f81252636f89f32db
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1724088086838
+status: 1
+tags: []
+user_id: unknown

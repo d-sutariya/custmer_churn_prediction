@@ -1,0 +1,15 @@
+artifact_uri: file:///kaggle/working/mlruns/798868638505641586/19eadb0e9ff545d8914fdb19d93df4bd/artifacts
+end_time: null
+entry_point_name: ''
+experiment_id: '798868638505641586'
+lifecycle_stage: active
+run_id: 19eadb0e9ff545d8914fdb19d93df4bd
+run_name: judicious-lynx-608
+run_uuid: 19eadb0e9ff545d8914fdb19d93df4bd
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1724088128294
+status: 1
+tags: []
+user_id: unknown

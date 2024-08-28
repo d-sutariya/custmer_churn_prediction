@@ -1,0 +1,15 @@
+artifact_uri: file:///kaggle/working/mlruns/798868638505641586/ed4115c38d29496c83a2c9b57c8e4e2c/artifacts
+end_time: null
+entry_point_name: ''
+experiment_id: '798868638505641586'
+lifecycle_stage: active
+run_id: ed4115c38d29496c83a2c9b57c8e4e2c
+run_name: legendary-worm-837
+run_uuid: ed4115c38d29496c83a2c9b57c8e4e2c
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1724088031074
+status: 1
+tags: []
+user_id: unknown

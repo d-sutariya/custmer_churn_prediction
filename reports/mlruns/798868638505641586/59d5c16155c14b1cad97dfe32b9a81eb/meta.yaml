@@ -1,0 +1,15 @@
+artifact_uri: file:///kaggle/working/mlruns/798868638505641586/59d5c16155c14b1cad97dfe32b9a81eb/artifacts
+end_time: null
+entry_point_name: ''
+experiment_id: '798868638505641586'
+lifecycle_stage: active
+run_id: 59d5c16155c14b1cad97dfe32b9a81eb
+run_name: grandiose-koi-814
+run_uuid: 59d5c16155c14b1cad97dfe32b9a81eb
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1724088088846
+status: 1
+tags: []
+user_id: unknown

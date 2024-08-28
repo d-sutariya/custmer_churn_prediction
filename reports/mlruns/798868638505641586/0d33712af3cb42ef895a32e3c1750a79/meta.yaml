@@ -1,0 +1,15 @@
+artifact_uri: file:///kaggle/working/mlruns/798868638505641586/0d33712af3cb42ef895a32e3c1750a79/artifacts
+end_time: null
+entry_point_name: ''
+experiment_id: '798868638505641586'
+lifecycle_stage: active
+run_id: 0d33712af3cb42ef895a32e3c1750a79
+run_name: nosy-owl-936
+run_uuid: 0d33712af3cb42ef895a32e3c1750a79
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1724088149853
+status: 1
+tags: []
+user_id: unknown

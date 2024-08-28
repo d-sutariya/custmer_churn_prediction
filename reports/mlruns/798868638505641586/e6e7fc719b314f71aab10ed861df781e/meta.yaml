@@ -1,0 +1,15 @@
+artifact_uri: file:///kaggle/working/mlruns/798868638505641586/e6e7fc719b314f71aab10ed861df781e/artifacts
+end_time: null
+entry_point_name: ''
+experiment_id: '798868638505641586'
+lifecycle_stage: active
+run_id: e6e7fc719b314f71aab10ed861df781e
+run_name: melodic-fish-611
+run_uuid: e6e7fc719b314f71aab10ed861df781e
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1724088029045
+status: 1
+tags: []
+user_id: unknown

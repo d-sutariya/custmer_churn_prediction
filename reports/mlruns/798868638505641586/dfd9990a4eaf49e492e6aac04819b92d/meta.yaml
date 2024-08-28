@@ -1,0 +1,15 @@
+artifact_uri: file:///kaggle/working/mlruns/798868638505641586/dfd9990a4eaf49e492e6aac04819b92d/artifacts
+end_time: null
+entry_point_name: ''
+experiment_id: '798868638505641586'
+lifecycle_stage: active
+run_id: dfd9990a4eaf49e492e6aac04819b92d
+run_name: bemused-lynx-922
+run_uuid: dfd9990a4eaf49e492e6aac04819b92d
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1724088047720
+status: 1
+tags: []
+user_id: unknown

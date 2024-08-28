@@ -1,0 +1,15 @@
+artifact_uri: file:///kaggle/working/mlruns/798868638505641586/293b020abe134bfb89870fe7f950d045/artifacts
+end_time: null
+entry_point_name: ''
+experiment_id: '798868638505641586'
+lifecycle_stage: active
+run_id: 293b020abe134bfb89870fe7f950d045
+run_name: marvelous-whale-168
+run_uuid: 293b020abe134bfb89870fe7f950d045
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1724087960061
+status: 1
+tags: []
+user_id: unknown

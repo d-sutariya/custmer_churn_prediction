@@ -1,0 +1,15 @@
+artifact_uri: file:///kaggle/working/mlruns/798868638505641586/ae370630e56d4200a467c69863927fb0/artifacts
+end_time: null
+entry_point_name: ''
+experiment_id: '798868638505641586'
+lifecycle_stage: active
+run_id: ae370630e56d4200a467c69863927fb0
+run_name: burly-sow-471
+run_uuid: ae370630e56d4200a467c69863927fb0
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1724088037485
+status: 1
+tags: []
+user_id: unknown

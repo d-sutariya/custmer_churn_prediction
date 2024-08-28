@@ -1,0 +1,15 @@
+artifact_uri: file:///kaggle/working/mlruns/798868638505641586/1ad7eff0d70c4d578738d8cc7135b125/artifacts
+end_time: null
+entry_point_name: ''
+experiment_id: '798868638505641586'
+lifecycle_stage: active
+run_id: 1ad7eff0d70c4d578738d8cc7135b125
+run_name: overjoyed-gull-97
+run_uuid: 1ad7eff0d70c4d578738d8cc7135b125
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1724088099512
+status: 1
+tags: []
+user_id: unknown

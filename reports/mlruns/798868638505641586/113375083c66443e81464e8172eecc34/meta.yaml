@@ -1,0 +1,15 @@
+artifact_uri: file:///kaggle/working/mlruns/798868638505641586/113375083c66443e81464e8172eecc34/artifacts
+end_time: null
+entry_point_name: ''
+experiment_id: '798868638505641586'
+lifecycle_stage: active
+run_id: 113375083c66443e81464e8172eecc34
+run_name: rambunctious-swan-89
+run_uuid: 113375083c66443e81464e8172eecc34
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1724088117753
+status: 1
+tags: []
+user_id: unknown

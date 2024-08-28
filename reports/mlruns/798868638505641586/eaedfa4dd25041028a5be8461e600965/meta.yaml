@@ -1,0 +1,15 @@
+artifact_uri: file:///kaggle/working/mlruns/798868638505641586/eaedfa4dd25041028a5be8461e600965/artifacts
+end_time: null
+entry_point_name: ''
+experiment_id: '798868638505641586'
+lifecycle_stage: active
+run_id: eaedfa4dd25041028a5be8461e600965
+run_name: efficient-whale-91
+run_uuid: eaedfa4dd25041028a5be8461e600965
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1724088114636
+status: 1
+tags: []
+user_id: unknown

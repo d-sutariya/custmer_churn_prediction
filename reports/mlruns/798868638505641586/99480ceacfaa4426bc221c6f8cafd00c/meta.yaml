@@ -1,0 +1,15 @@
+artifact_uri: file:///kaggle/working/mlruns/798868638505641586/99480ceacfaa4426bc221c6f8cafd00c/artifacts
+end_time: null
+entry_point_name: ''
+experiment_id: '798868638505641586'
+lifecycle_stage: active
+run_id: 99480ceacfaa4426bc221c6f8cafd00c
+run_name: dashing-shoat-420
+run_uuid: 99480ceacfaa4426bc221c6f8cafd00c
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1724087960064
+status: 1
+tags: []
+user_id: unknown

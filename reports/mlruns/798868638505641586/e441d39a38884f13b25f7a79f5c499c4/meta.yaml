@@ -1,0 +1,15 @@
+artifact_uri: file:///kaggle/working/mlruns/798868638505641586/e441d39a38884f13b25f7a79f5c499c4/artifacts
+end_time: null
+entry_point_name: ''
+experiment_id: '798868638505641586'
+lifecycle_stage: active
+run_id: e441d39a38884f13b25f7a79f5c499c4
+run_name: capricious-bird-315
+run_uuid: e441d39a38884f13b25f7a79f5c499c4
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1724088132596
+status: 1
+tags: []
+user_id: unknown

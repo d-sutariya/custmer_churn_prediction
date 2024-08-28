@@ -1,0 +1,15 @@
+artifact_uri: file:///kaggle/working/mlruns/798868638505641586/d30de04f0f024600a94c2519944245ac/artifacts
+end_time: null
+entry_point_name: ''
+experiment_id: '798868638505641586'
+lifecycle_stage: active
+run_id: d30de04f0f024600a94c2519944245ac
+run_name: auspicious-swan-810
+run_uuid: d30de04f0f024600a94c2519944245ac
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1724088082122
+status: 1
+tags: []
+user_id: unknown
