@@ -139,6 +139,10 @@ class FeatureGenerater:
             feature_df_aligned, feature_df_test_aligned = feature_df.align(feature_df_test, join='inner', axis=1)
             feature_df_aligned['Churn'] = featured_train_labels
 
+                    # Clean feature names again to ensure all unwanted characters are removed
+            # feature_df_aligned = self.__clean_feature_names(feature_df_aligned)
+            # feature_df_test_aligned = self.__clean_feature_names(feature_df_test_aligned)
+
             return feature_df_aligned, feature_df_test_aligned
         else:
             # Generate feature names only for training set
@@ -191,6 +195,15 @@ class FeatureTransformer:
             remainder='passthrough'  # Keep remaining columns as they are
         )
 
+    def __clean_feature_names(self, df):
+        # Clean column names by replacing special characters with underscore
+        cleaned_names = []
+        for col in df.columns:
+            clean_name = re.sub(r'[^A-Za-z0-9_]+', '_', col)
+            cleaned_names.append(clean_name)
+        df.columns = cleaned_names
+        return df
+    
     def transform(self):
         # Fit and transform the training set
         self.train_set = self.col_transfm.fit_transform(self.train_set)
@@ -200,6 +213,9 @@ class FeatureTransformer:
         # Convert transformed data to DataFrames with feature names
         self.train_set = pd.DataFrame(self.train_set, columns=self.col_transfm.get_feature_names_out())
         self.test_set = pd.DataFrame(self.test_set, columns=self.col_transfm.get_feature_names_out())
+        
+        # self.train_set = self.__clean_feature_names(self.train_set)
+        # self.test_set = self.__clean_feature_names(self.test_set)
 
         # Rename the Churn column
         self.train_set = self.train_set.rename(columns={'remainder__Churn': 'Churn'})
