@@ -7,7 +7,7 @@ from sklearn.impute import SimpleImputer
 from sklearn.compose import ColumnTransformer
 from sklearn.preprocessing import StandardScaler
 
-class GenerateFeatures:
+class FeatureGenerater:
     def __init__(self, train_set, test_set, df):
         self.train_set = train_set  # Training dataset
         self.test_set = test_set  # Test dataset

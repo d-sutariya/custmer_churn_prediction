@@ -241,36 +241,3 @@ def save_results(study_dfs, file_paths):
 # load the results 
 def load_results(file_paths):
     return [pd.read_csv(path).drop('Unnamed: 0', axis=1).reset_index(drop=True) for path in file_paths]
-
-
-
-def weighted_voting(predictions, weights):
-    combined_predictions = np.zeros_like(next(iter(predictions.values())))  # Initialize array for combined predictions
-    for model_name, model_preds in predictions.items():
-        combined_predictions += weights[model_name] * model_preds  # Weight and sum predictions from each model
-    combined_predictions /= sum(weights.values())  # Normalize the combined predictions by the sum of weights
-    return combined_predictions  # Return the final weighted prediction
-
-def create_nn_model(params, input_shape):
-    model = Sequential()
-    model.add(Dense(params['units_layer1'], input_dim=input_shape, activation='relu'))  # First dense layer
-    model.add(Dropout(params['dropout_layer1']))  # Dropout layer after first dense layer
-    model.add(Dense(params['units_layer2'], activation='relu'))  # Second dense layer
-    model.add(Dropout(params['dropout_layer2']))  # Dropout layer after second dense layer
-    model.add(Dense(1, activation='sigmoid'))  # Output layer with sigmoid activation for binary classification
-    optimizer = Adam(learning_rate=params['learning_rate'])  # Adam optimizer with specified learning rate
-    model.compile(optimizer=optimizer, loss='binary_crossentropy', metrics=['AUC'])  # Compile model with binary crossentropy loss and AUC metric
-    return model  # Return the compiled model
-
-def get_predictions(models, X):
-    predictions = []
-    for model in models:
-        pred = model.predict(X).ravel()
-        predictions.append(pred)
-    return predictions
-
-# Function to perform soft voting
-def soft_voting(models, X):
-    predictions = get_predictions(models, X)
-    avg_predictions = np.mean(predictions, axis=0)
-    return avg_predictions
