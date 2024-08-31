@@ -1,0 +1,7 @@
+from IPython.display import Image, display
+
+# Path to the image in your local environment
+image_path = "../reports/figures/Copy of Algorithm flowchart example(1).jpeg"
+
+# Display the image
+display(Image(filename=image_path))
