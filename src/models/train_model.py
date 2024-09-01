@@ -8,10 +8,10 @@ from pathlib import Path
 
 env_path = Path('.env')
 load_dotenv(dotenv_path = env_path)
-
-model_path = Path(os.getenv('MODEL_DIRECTORY'))/'model.txt'
-train_df = pd.read_csv(Path(os.getenv('OUTPUT_DATA_DIRECTORY'))/'processed'/'transformed_featured_final_train_set.csv')
-test_df = pd.read_csv(Path(os.getenv('OUTPUT_DATA_DIRECTORY'))/'processed'/'transformed_featured_test_set.csv')
+root_dir = Path(os.getenv('ROOT_DIRECTORY'))
+model_path =root_dir/'models'/'model.txt'
+train_df = pd.read_csv(root_dir/'data'/'processed'/'transformed_featured_final_train_set.csv')
+test_df = pd.read_csv(root_dir/'data'/'processed'/'transformed_featured_test_set.csv')
 
 best_model = lgb.Booster(model_file=model_path)
 train_set = lgb.Dataset(train_df.drop(columns='Churn'),train_df['Churn'],params={'verbose':-1})
@@ -26,7 +26,7 @@ final_model = lgb.train(best_model.params,
                                lgb.early_stopping(stopping_rounds=50)
                            ])
 
-final_model_path = Path(os.getenv('MODEL_DIRECTORY'))/'final_model.txt'
+final_model_path = root_dir/'models'/'final_model.txt'
 final_model.save_model(final_model_path)
 
 

@@ -2,6 +2,8 @@ import numpy as np
 import pandas as pd
 import featuretools as ft
 import re
+import os
+from pathlib import Path
 from sklearn.pipeline import Pipeline
 from sklearn.impute import SimpleImputer 
 from sklearn.compose import ColumnTransformer
@@ -85,6 +87,17 @@ class FeatureGenerater:
                 ignore_dataframes=[self.test_set_name] # which dataframes should avoid to mitigate data leak.
             )
             # Ensure 'index' column in feature_df is treated as integer index
+            root_dir = Path(os.getenv('ROOT_DIRECTORY'))
+
+            # Ensure that the directory exists
+            feature_dir = root_dir / 'reports' / 'feature_dfs'
+            feature_dir.mkdir(parents=True, exist_ok=True)
+
+            # Now save the features
+            with open(feature_dir / f'featured_{self.train_set_name}.json', 'w') as f:
+                ft.save_features(feature_names, f)
+
+        
             feature_df = feature_df.reset_index()
             feature_df['index'] = feature_df['index'].astype(int)
 
@@ -104,6 +117,10 @@ class FeatureGenerater:
                 features_only=names_only,
                 ignore_dataframes=[self.train_set_name]
             )
+
+            with open(feature_dir/f'featured_{self.test_set_name}.json','w') as f:
+                ft.save_features(features_test_name,f)
+            
             # Ensure 'index' column in feature_df_test is treated as integer index
             feature_df_test = feature_df_test.reset_index()
             feature_df_test['index'] = feature_df_test['index'].astype(int)

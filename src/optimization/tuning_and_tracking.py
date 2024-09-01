@@ -26,11 +26,11 @@ load_dotenv(dotenv_path=env_path)
 
 # base_path = Path()
 
-base_output_dir = Path(os.getenv("OUTPUT_DATA_DIRECTORY"))
-
-raw_data_dir = Path(os.path.join(base_output_dir,'raw'))
-interim_data_dir = Path(os.path.join(base_output_dir,'interim'))
-processed_data_dir = Path(os.path.join(base_output_dir,'processed'))
+base_dir = Path(os.getenv("ROOT_DIRECTORY"))
+data_dir = base_dir/'data'
+raw_data_dir = Path(os.path.join(data_dir,'raw'))
+interim_data_dir = Path(os.path.join(data_dir,'interim'))
+processed_data_dir = Path(os.path.join(data_dir,'processed'))
 
 
 os.environ['MLFLOW_TRACKING_USERNAME'] = os.getenv("MLFLOW_TRACKING_USERNAME")
@@ -128,7 +128,7 @@ def objective(trial):
         # Create a directory to save the model for this trial
         trial_id = f"trial_{trial.number}"
         
-        trial_dir = base_output_dir / trial_id
+        trial_dir = data_dir / trial_id
         os.makedirs(trial_dir, exist_ok=True)
 
         # Save the trained model to a file and log it to MLflow

@@ -25,19 +25,15 @@ from data.data_utils import DataLoader,split_data
 
 @click.command()
 @click.argument('input_filepath', type=click.Path(exists=True))
-@click.argument('output_filepath', type=click.Path())
-def main(input_filepath, output_filepath):
+def main(input_filepath):
     """ Runs data processing scripts to turn raw data from (../raw) into
         cleaned data ready to be analyzed (saved in ../processed).
     """
     logger = logging.getLogger(__name__)
     logger.info('making final data set from raw data')
     
-
-    output_dir = Path(output_filepath)
-    base_dir = output_dir.resolve()
-    output_dir.mkdir(parents=True,exist_ok=True)
-
+    output_dir = Path(os.getenv('ROOT_DIRECTORY'))/'data'
+    output_dir.mkdir(exist_ok=True,parents=True)
 
     processed_dir = output_dir / 'processed'
     interim_dir = output_dir / 'interim'
@@ -47,20 +43,7 @@ def main(input_filepath, output_filepath):
     interim_dir.mkdir(parents=True,exist_ok=True)
     raw_dir.mkdir(parents=True,exist_ok=True)
 
-    set_env_variables(raw_dir,interim_dir,processed_dir,base_dir)
-
     load_and_split_data(input_filepath,output_dir)
-
-def set_env_variables(raw_dir,interim_dir,processed_dir,output_dir):
-    env_path = Path('.env')
-
-    if not env_path.exists():
-        env_path.touch()
-
-    set_key(env_path,'RAW_DATA_DIRECTORY',str(raw_dir))
-    set_key(env_path,'INTERIM_DATA_DIRECTORY',str(interim_dir))
-    set_key(env_path,'PROCESSED_DATA_DIRECTORY',str(processed_dir))
-    set_key(env_path,'OUTPUT_DATA_DIRECTORY',str(output_dir))
 
 def load_and_split_data(input_filepath,output_dir):
     
