@@ -1,3 +1,7 @@
+
+# visit our docs for guidance regarding how to open mlflow ui. 
+# click here
+
 #!/usr/bin/env python
 # coding: utf-8
 
@@ -6,40 +10,48 @@ import pandas as pd
 import optuna
 import mlflow
 import warnings
+import subprocess
 import os
 import uuid
 import dagshub
 import lightgbm as lgb
 import mlflow.lightgbm
-from IPython.display import FileLink,display,Image
+from dotenv import load_dotenv
 from pathlib import Path
 from mlflow.tracking import MlflowClient
 from sklearn.metrics import roc_auc_score,f1_score,accuracy_score,recall_score,precision_score
 warnings.filterwarnings("ignore")
+env_path = Path('.env')
+load_dotenv(dotenv_path=env_path)
+
+# base_path = Path()
+
+base_output_dir = Path(os.getenv("OUTPUT_DATA_DIRECTORY"))
+
+raw_data_dir = Path(os.path.join(base_output_dir,'raw'))
+interim_data_dir = Path(os.path.join(base_output_dir,'interim'))
+processed_data_dir = Path(os.path.join(base_output_dir,'processed'))
 
 
-raw_data_dir = os.getenv(Path('RAW_DATA_DIRECTORY'))
-interim_data_dir = os.getenv(Path("INTERIM_DATA_DIRECTORY"))
-processed_data_dir = os.getenv(Path("PROCESSED_DATA_DIRECTORY"))
+os.environ['MLFLOW_TRACKING_USERNAME'] = os.getenv("MLFLOW_TRACKING_USERNAME")
+os.environ['MLFLOW_TRACKING_PASSWORD'] = os.getenv("MLFLOW_TRACKING_PASSWORD")
+os.environ['MLFLOW_TRACKING_URI'] = os.getenv("MLFLOW_TRACKING_URI")
+os.environ['DAGSHUB_USER_TOKEN'] = os.getenv("DAGSHUB_USER_TOKEN")
 
-os.environ['MLFLOW_TRACKING_USERNAME'] = 'tnbmarketplace'
-os.environ['MLFLOW_TRACKING_PASSWORD'] = '0d957e7b20c38643e8fd8de6d9d8e1de130caf90'
-os.environ['MLFLOW_TRACKING_URI'] = 'https://dagshub.com/tnbmarketplace/mlflow_experiment_tracking.mlflow'
-os.environ['DAGSHUB_USER_TOKEN'] = "fc957a0e9846b45be51bcea1a3ea28f7a3f236aa"
-get_ipython().system('dagshub login --token "fc957a0e9846b45be51bcea1a3ea28f7a3f236aa"')
+dagshub_token = os.getenv('DAGSHUB_USER_TOKEN')
+command = f'dagshub login --token {dagshub_token}'
 
+subprocess.run(command,shell=True,check=True)
 
 dagshub.init(repo_name='mlflow_experiment_tracking',repo_owner='tnbmarketplace',mlflow=True)
 
 
-transformed_featured_train_set = pd.read_csv(Path(interim_data_dir/'transformed_featured_train_set.csv'))
-transformed_featured_val_set = pd.read_csv(Path(interim_data_dir/'transformed_featured_val_set.csv'))
-transformed_featured_test_set = pd.read_csv(Path(interim_data_dir/'transformed_featured_test_set.csv'))
-transformed_featured_final_train_set = pd.read_csv(Path(interim_data_dir/'transformed_featured_final_train_set.csv'))
+transformed_featured_train_set = pd.read_csv(processed_data_dir/'transformed_featured_train_set.csv')
+transformed_featured_val_set = pd.read_csv(processed_data_dir/'transformed_featured_val_set.csv')
+transformed_featured_test_set = pd.read_csv(processed_data_dir/'transformed_featured_test_set.csv')
+transformed_featured_final_train_set = pd.read_csv(processed_data_dir/'transformed_featured_final_train_set.csv')
 
-
-
-mlflow.set_tracking_uri("https://dagshub.com/tnbmarketplace/mlflow_experiment_tracking.mlflow")
+mlflow.set_tracking_uri(os.getenv("MLFLOW_TRACKING_URI"))
 
 
 # **If you want to run trials make the below variable True.**
@@ -115,7 +127,8 @@ def objective(trial):
 
         # Create a directory to save the model for this trial
         trial_id = f"trial_{trial.number}"
-        trial_dir = os.path.join('/kaggle/working/experiments', trial_id)
+        
+        trial_dir = base_output_dir / trial_id
         os.makedirs(trial_dir, exist_ok=True)
 
         # Save the trained model to a file and log it to MLflow
@@ -162,8 +175,8 @@ if run_trials:
     study.optimize(objective, n_trials=100,n_jobs = -1) # change trials as per your wish
     
     # Prepare training and test datasets
-    train_set = lgb.Dataset(transformed_featured_final_train_set.drop(columns='Churn'), label=transformed_featured_final_train_set['Churn'])
-    test_set = lgb.Dataset(transformed_featured_test_set.drop(columns='Churn'), label=transformed_featured_test_set['Churn'])
+    train_set = lgb.Dataset(transformed_featured_final_train_set.drop(columns='Churn'),params={'verbose': -1}, label=transformed_featured_final_train_set['Churn'])
+    test_set = lgb.Dataset(transformed_featured_test_set.drop(columns='Churn'),params={'verbose': -1}, label=transformed_featured_test_set['Churn'])
 
     # Train the final model using the best parameters from Optuna
     final_model = lgb.train(study.best_params,
@@ -181,11 +194,12 @@ else:
     print("Skipping trials. Loading pre-existing best model...")
 
     # Load the best model from a saved file
-    best_model = lgb.Booster(model_file=r"../models/model.txt")
+    model_path = Path(os.getenv("MODEL_DIRECTORY"))/'model.txt'
+    best_model = lgb.Booster(model_file=model_path)
     
     # Prepare training and test datasets
-    train_set = lgb.Dataset(transformed_featured_final_train_set.drop(columns='Churn'), label=transformed_featured_final_train_set['Churn'])
-    test_set = lgb.Dataset(transformed_featured_test_set.drop(columns='Churn'), label=transformed_featured_test_set['Churn'])
+    train_set = lgb.Dataset(transformed_featured_final_train_set.drop(columns='Churn'), label=transformed_featured_final_train_set['Churn'],params={'verbose:-1'})
+    test_set = lgb.Dataset(transformed_featured_test_set.drop(columns='Churn'), label=transformed_featured_test_set['Churn'],params={'verbose':-1})
 
     # Train the final model using the pre-loaded best model
     final_model = lgb.train(best_model.params,
@@ -196,7 +210,6 @@ else:
                            callbacks=[
                                lgb.early_stopping(stopping_rounds=50)
                            ])
-
 
 # ### **Warning**:-
 # **You should save experiment name to somwhere to access that perticular experiment Other wise once you Close this notebook You will not able to access it.**
