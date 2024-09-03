@@ -19,12 +19,10 @@ import warnings
 
 from features.generate_and_transform_features import FeatureGenerater,FeatureTransformer
 from data.data_utils import DataLoader,split_data
+from argparse import ArgumentParser
 
 
 
-
-@click.command()
-@click.argument('input_filepath', type=click.Path(exists=True))
 def main(input_filepath):
     """ Runs data processing scripts to turn raw data from (../raw) into
         cleaned data ready to be analyzed (saved in ../processed).
@@ -110,7 +108,7 @@ def transform_and_save_data(encd_df,train_set,test_set,train_set_splitted,val_se
 
     # let's generate features for the smoted dataset
 
-    feature_gen = FeatureGenerater(smoted_df,val_copy,encd_df)
+    feature_gen = FeatureGenerater(encd_df,smoted_df,val_copy)
     feature_gen.Create_Entityset('smoted','smoted_train','val_test','index')
 
     # the below sets will be used for the evaluation of the smoted datasets
@@ -120,7 +118,7 @@ def transform_and_save_data(encd_df,train_set,test_set,train_set_splitted,val_se
         'train':['Churn','index'],
         'test':['Churn','index',]
     }
-    feature_gen = FeatureGenerater(train_set_splitted,val_set,encd_df)
+    feature_gen = FeatureGenerater(encd_df,train_set_splitted,val_set)
     feature_gen.Create_Entityset('validation','train','test','index')
 
     # the below sets will be used for the training and validation process
@@ -132,7 +130,7 @@ def transform_and_save_data(encd_df,train_set,test_set,train_set_splitted,val_se
         'final_train':['Churn','index'],
         'final_test':['Churn','index',]
     }
-    feature_gen = FeatureGenerater(train_set,test_set,encd_df)
+    feature_gen = FeatureGenerater(encd_df,train_set,test_set)
     feature_gen.Create_Entityset('final','final_train','final_test','index')
     
     # the below sets will be used for the train and test the final model that we will get from the val set
@@ -150,7 +148,7 @@ def transform_and_save_data(encd_df,train_set,test_set,train_set_splitted,val_se
     feature_transformer = FeatureTransformer(smoted_featured_train_set , smoted_featured_test_set)
     transformed_featured_smoted_train_set , transformed_featured_smoted_test_set = feature_transformer.transform()
 
-
+    featured_final_train_set.to_csv(output_dir/'interim'/'featured_final_train_set.csv')
     transformed_featured_final_train_set.to_csv(output_dir/'processed'/'transformed_featured_final_train_set.csv',index=False)
     transformed_featured_smoted_train_set.to_csv(output_dir/'processed'/'transformed_featured_smoted_train_set.csv',index=False)
     transformed_featured_train_set.to_csv(output_dir/'processed'/'transformed_featured_train_set.csv',index=False)
@@ -159,17 +157,24 @@ def transform_and_save_data(encd_df,train_set,test_set,train_set_splitted,val_se
 
 
 if __name__ == '__main__':
+
+    parser = ArgumentParser(description=" it is used for converting raw doata into processed")
+    parser.add_argument('--input_file_path',type=str,help="raw data file path relative to the project root directory")
+
+    args = parser.parse_args()
+
+    if not args.input_file_path:
+        args.input_file_path =  input("Please enter raw data file path relative to the project root directory: ")
+
+
     log_fmt = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
     logging.basicConfig(level=logging.INFO, format=log_fmt)
-
-    # not used in this stub but often useful for finding various files
-    project_dir = Path(__file__).resolve().parents[2]
 
     # find .env automagically by walking up directories until it's found, then
     # load up the .env entries as environment variables
     load_dotenv(find_dotenv())
 
-    main()
+    main(args.input_file_path)
 
     
     

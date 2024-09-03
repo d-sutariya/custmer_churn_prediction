@@ -24,10 +24,8 @@ warnings.filterwarnings("ignore")
 env_path = Path('.env')
 load_dotenv(dotenv_path=env_path)
 
-# base_path = Path()
-
-base_dir = Path(os.getenv("ROOT_DIRECTORY"))
-data_dir = base_dir/'data'
+root_dir = Path(os.getenv("ROOT_DIRECTORY"))
+data_dir = root_dir/'data'
 raw_data_dir = Path(os.path.join(data_dir,'raw'))
 interim_data_dir = Path(os.path.join(data_dir,'interim'))
 processed_data_dir = Path(os.path.join(data_dir,'processed'))
@@ -179,14 +177,16 @@ if run_trials:
     test_set = lgb.Dataset(transformed_featured_test_set.drop(columns='Churn'),params={'verbose': -1}, label=transformed_featured_test_set['Churn'])
 
     # Train the final model using the best parameters from Optuna
-    final_model = lgb.train(study.best_params,
-                           train_set,
+    final_model = lgb.train(train_set=train_set,
+                            params=study.best_params,
+                           
                            num_boost_round=3000,
                            valid_sets=[test_set],
                            callbacks=[
                                lgb.early_stopping(stopping_rounds=200)
                            ])
-    
+    model_path = root_dir/'models'/'final_model.txt'
+    final_model.save_model(filename=model_path)
     print("experiment name is",experiment_name)
     print("Save it somewhere to access experiments.")
 else:
@@ -194,16 +194,18 @@ else:
     print("Skipping trials. Loading pre-existing best model...")
 
     # Load the best model from a saved file
-    model_path = Path(os.getenv("MODEL_DIRECTORY"))/'model.txt'
+    model_path = root_dir/'models'/'model.txt'
     best_model = lgb.Booster(model_file=model_path)
     
     # Prepare training and test datasets
-    train_set = lgb.Dataset(transformed_featured_final_train_set.drop(columns='Churn'), label=transformed_featured_final_train_set['Churn'],params={'verbose:-1'})
+    train_set = lgb.Dataset(transformed_featured_final_train_set.drop(columns='Churn'), label=transformed_featured_final_train_set['Churn'],params={'verbose':-1})
     test_set = lgb.Dataset(transformed_featured_test_set.drop(columns='Churn'), label=transformed_featured_test_set['Churn'],params={'verbose':-1})
 
     # Train the final model using the pre-loaded best model
-    final_model = lgb.train(best_model.params,
-                           train_set,
+    final_model = lgb.train(
+                            train_set = train_set,
+                            params = best_model.params,
+                           
                            num_boost_round=500,
                            valid_sets=[test_set],
                            init_model=best_model,

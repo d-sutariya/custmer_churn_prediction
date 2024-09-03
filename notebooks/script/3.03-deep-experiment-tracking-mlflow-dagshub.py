@@ -12,15 +12,10 @@ import dagshub
 import lightgbm as lgb
 import mlflow.lightgbm
 from IPython.display import FileLink,display,Image
-from pathlib import Path
 from mlflow.tracking import MlflowClient
 from sklearn.metrics import roc_auc_score,f1_score,accuracy_score,recall_score,precision_score
 warnings.filterwarnings("ignore")
 
-
-raw_data_dir = os.getenv(Path('RAW_DATA_DIRECTORY'))
-interim_data_dir = os.getenv(Path("INTERIM_DATA_DIRECTORY"))
-processed_data_dir = os.getenv(Path("PROCESSED_DATA_DIRECTORY"))
 
 os.environ['MLFLOW_TRACKING_USERNAME'] = 'tnbmarketplace'
 os.environ['MLFLOW_TRACKING_PASSWORD'] = '0d957e7b20c38643e8fd8de6d9d8e1de130caf90'
@@ -32,12 +27,13 @@ get_ipython().system('dagshub login --token "fc957a0e9846b45be51bcea1a3ea28f7a3f
 dagshub.init(repo_name='mlflow_experiment_tracking',repo_owner='tnbmarketplace',mlflow=True)
 
 
-transformed_featured_train_set = pd.read_csv(Path(interim_data_dir/'transformed_featured_train_set.csv'))
-transformed_featured_val_set = pd.read_csv(Path(interim_data_dir/'transformed_featured_val_set.csv'))
-transformed_featured_test_set = pd.read_csv(Path(interim_data_dir/'transformed_featured_test_set.csv'))
-transformed_featured_final_train_set = pd.read_csv(Path(interim_data_dir/'transformed_featured_final_train_set.csv'))
+transformed_featured_train_set = pd.read_csv(r"../data/processed/transformed_featured_train_set.csv")
+transformed_featured_val_set = pd.read_csv(r"../data/processed/transformed_featured_val_set.csv")
+transformed_featured_test_set = pd.read_csv(r"../data/processed/transformed_featured_test_set.csv")
+transformed_featured_final_train_set = pd.read_csv(r"../data/processed/transformed_featured_final_train_set.csv")
 
 
+# ### Optimization
 
 mlflow.set_tracking_uri("https://dagshub.com/tnbmarketplace/mlflow_experiment_tracking.mlflow")
 
@@ -136,7 +132,22 @@ def objective(trial):
     return weighted_recall
 
 
-# visit our docs for guidance regarding how to open mlflow ui.
+# ### **Visualizing Experiments on MLflow UI**
+# 
+# 1. Copy your experiment name as indicated in below image. If you are not running trials you can use my experiment(name = my experiment).
+# 
+# 
+# 
+
+display(Image(r"../reports/figures/Screenshot (154).png"))
+
+
+# 2. Go to the by clicking here https://dagshub.com/tnbmarketplace/mlflow_experiment_tracking.mlflow 
+# 
+# 3. paste your experiment name in serach bar and search it then click on the your experiment as shown below image. If you want to run experiment done by me write my experiment in the name of the search bar and click on it.
+
+display(Image(r"../reports/figures/Screenshot (155).png"))
+
 
 if run_trials:
 
