@@ -9,6 +9,20 @@ from argparse import ArgumentParser
 warnings.filterwarnings('ignore')
 
 def main(model_path , pred_path):
+
+    """
+    Main function to load a pre-trained LightGBM model and make predictions on a given dataset.
+    Parameters
+    ----------
+    model_path : str
+        Path to the pre-trained LightGBM model file relative to the root directory.
+    pred_path : str
+        Path to the CSV file containing the dataset for which predictions are to be made, relative to the root directory.
+    Returns
+    -------
+    None
+        The function saves the predictions to a CSV file in the 'post_deployment' directory and prints the path to the saved file.
+    """
     root_dir = Path(os.getenv('ROOT_DIRECTORY'))
     model_path = root_dir/model_path
     pred_set = pd.read_csv(root_dir/pred_path)
@@ -26,6 +40,7 @@ def main(model_path , pred_path):
         'predictions':pred_digits
     })
     preds_df.to_csv(root_dir/'post_deployment'/'predictions.csv')
+    print("predicted csv is stored at:- ",root_dir/'post_deployment'/'predictions.csv')
 
 
 

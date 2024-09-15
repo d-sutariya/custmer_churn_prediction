@@ -6,6 +6,26 @@ from dotenv import find_dotenv, load_dotenv, set_key
 @click.command()
 @click.argument('root_dir', type=click.Path(), required=False)
 def main(root_dir=None):
+    """
+    Sets up the project environment by creating a root directory and setting environment variables.
+    This function performs the following steps:
+    1. Checks if a .env file exists in the current directory. If not, it creates one.
+    2. If `root_dir` is not provided, it sets the current working directory as the root directory.
+    3. Creates the root directory if it does not exist.
+    4. Sets several environment variables in the .env file, including:
+       - ROOT_DIRECTORY: The path to the root directory.
+       - MLFLOW_TRACKING_USERNAME: The username for MLflow tracking.
+       - MLFLOW_TRACKING_PASSWORD: The password for MLflow tracking.
+       - MLFLOW_TRACKING_URI: The URI for MLflow tracking.
+       - DAGSHUB_USER_TOKEN: The user token for DagsHub.
+    Parameters
+    ----------
+    root_dir : str or None, optional
+        The path to the root directory. If None, the current working directory will be used.
+    Returns
+    -------
+    None
+    """
     env_path = Path('.env')
 
     if not env_path.exists():

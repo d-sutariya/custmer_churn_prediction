@@ -18,6 +18,20 @@ from dotenv import load_dotenv
 
 def main(batch_train_file_path,sliding_window_path):
 
+    """
+    Main function to process and transform batch training data.
+    Parameters
+    ----------
+    batch_train_file_path : str
+        Path to the batch training data file.
+    sliding_window_path : str
+        Path to the sliding window data file.
+    Returns
+    -------
+    None
+        This function saves the transformed and aligned batch data to a CSV file.
+    """
+
     root_dir = Path(os.getenv('ROOT_DIRECTORY'))
     feature_name_path = root_dir/'reports'/'feature_dfs'/'featured_final_train.json'
     train_set = pd.read_csv(root_dir/'data'/'interim'/'train_set.csv')
@@ -59,7 +73,7 @@ def main(batch_train_file_path,sliding_window_path):
     transformed_aligned_batch['customerID'] = customerid.reset_index(drop=True)
 
     transformed_aligned_batch.to_csv(root_dir/'post_deployment'/'data'/'processed'/'transformed_aligned_batch.csv',index=False)
-
+    print("trnasformed data is stored at:- ",root_dir/'post_deployment'/'data'/'processed'/'transformed_aligned_batch.csv')
 
 if __name__=='__main__':
     parser = argparse.ArgumentParser(description="convert raw data into processed")

@@ -10,7 +10,41 @@ from sklearn.compose import ColumnTransformer
 from sklearn.preprocessing import StandardScaler
 
 class FeatureGenerater:
+    """
+    A class used to generate and transform features for customer churn prediction.
+    
+    Parameters      
+    ----------
+    df : pandas.DataFrame
+        The original DataFrame containing the data.
+    train_set : pandas.DataFrame
+        The training dataset.
+    test_set : pandas.DataFrame, optional
+        The test dataset (default is None).
+    entity_set : featuretools.EntitySet
+        The entity set used for feature engineering.
+    train_set_name : str
+        The name of the training dataset in the entity set.
+    test_set_name : str
+        The name of the test dataset in the entity set.
+    """
     def __init__(self, df , train_set,test_set = None):
+        """
+        Initializes the feature generation and transformation class.
+
+        Parameters:
+        df (pd.DataFrame): The original DataFrame containing the data.
+        train_set (pd.DataFrame): The training dataset.
+        test_set (pd.DataFrame, optional): The test dataset. Defaults to None.
+
+        Attributes:
+        train_set (pd.DataFrame): The training dataset.
+        test_set (pd.DataFrame): The test dataset.
+        entity_set (any): Placeholder for entity set.
+        train_set_name (str): Name of the training dataset in the entity set.
+        test_set_name (str): Name of the test dataset in the entity set.
+        df (pd.DataFrame): The original DataFrame.
+        """
         self.train_set = train_set  # Training dataset
         self.test_set = test_set  # Test dataset
         self.entity_set = None  # Placeholder for entity set
@@ -19,6 +53,28 @@ class FeatureGenerater:
         self.df = df  # Original DataFrame
 
     def Create_Entityset(self, entity_id, train_set_name, test_set_name = None, index_name=None):
+  
+        """
+        Create an EntitySet for feature engineering using Featuretools.
+
+        This method creates an EntitySet and adds the training and optionally the test datasets to it.
+        It checks if the specified index column is present in the datasets and creates the index if not present.
+
+        Parameters
+        ----------
+        entity_id : str
+            Unique identifier for the EntitySet.
+        train_set_name : str
+            Name to assign to the training dataset within the EntitySet.
+        test_set_name : str, optional
+            Name to assign to the test dataset within the EntitySet. Default is None.
+        index_name : str, optional
+            Name of the index column. If not present in the datasets, it will be created. Default is None.
+
+        Returns
+        -------
+        None
+        """
         # Check if index_name is not present in train and test sets
         if index_name not in self.train_set.columns and index_name not in self.test_set.columns:
             es = ft.EntitySet(id=entity_id)
@@ -62,6 +118,23 @@ class FeatureGenerater:
           # Store the test set name
 
     def __clean_feature_names(self, df):
+        """
+        Clean column names in a DataFrame by replacing special characters with underscores.
+
+        This method takes a DataFrame and processes its column names to ensure they contain
+        only alphanumeric characters and underscores. Any special characters are replaced
+        with underscores.
+
+        Parameters
+        ----------
+        df : pandas.DataFrame
+            The DataFrame whose column names need to be cleaned.
+
+        Returns
+        -------
+        pandas.DataFrame
+            The DataFrame with cleaned column names.
+        """
         # Clean column names by replacing special characters with underscore
         cleaned_names = []
         for col in df.columns:
@@ -71,11 +144,47 @@ class FeatureGenerater:
         return df
 
     def __remove_duplicate_columns(self, df):
+        """
+        Remove duplicate columns from a DataFrame.
+
+        This method removes columns that are duplicated in the given DataFrame,
+        retaining only the first occurrence of each column.
+
+        Parameters
+        ----------
+        df : pandas.DataFrame
+            The DataFrame from which duplicate columns need to be removed.
+
+        Returns
+        -------
+        pandas.DataFrame
+            A DataFrame with duplicate columns removed.
+        """
         # Remove duplicate columns
         df = df.loc[:, ~df.columns.duplicated()]
         return df
 
     def Generate_Features(self, trans_list=None, agg_list=None, ignore_columns=None, names_only=True):
+        """
+        Generate features for training and test datasets using featuretools.
+        
+        Parameters
+        ----------
+        trans_list : list, optional
+            List of transformation primitives to apply.
+        agg_list : list, optional
+            List of aggregation primitives to apply.
+        ignore_columns : list, optional
+            List of columns to ignore during feature generation.
+        names_only : bool, default=True
+            If True, only feature names are generated. If False, features are generated and saved.
+        
+        Returns
+        -------
+        tuple or DataFrame
+            If names_only is True, returns a tuple containing feature names for training and test sets.
+            If names_only is False, returns cleaned feature DataFrames for training and test sets.
+        """
         if names_only == False:
             # Generate features for training set
             # dfs generate features from data and merge them with target dataframe
@@ -144,6 +253,37 @@ class FeatureGenerater:
             return feature_names
             
     def clean_dataframes(self, feature_df, feature_df_test=None):
+        """
+        Clean and transform feature dataframes for customer churn prediction.
+        This method performs several cleaning and transformation steps on the provided
+        feature dataframes, including resetting indices, aligning with the main dataframe,
+        cleaning feature names, removing duplicate columns, and handling infinite values.
+        
+        Parameters
+        ----------
+        feature_df : pandas.DataFrame
+            The main feature dataframe to be cleaned and transformed.
+        feature_df_test : pandas.DataFrame, optional
+            An optional test feature dataframe to be cleaned and transformed. If provided,
+            both the training and test dataframes will be aligned to have the same columns.
+        
+        Returns
+        -------
+        pandas.DataFrame or tuple of pandas.DataFrame
+            If `feature_df_test` is not provided, returns the cleaned and transformed `feature_df`.
+            If `feature_df_test` is provided, returns a tuple of the cleaned and aligned
+            `(feature_df, feature_df_test)`.
+        Raises
+        ------
+        KeyError
+            If some indices in `feature_df` or `feature_df_test` are missing in the main dataframe `self.df`.
+        Notes
+        -----
+        - The method assumes that the main dataframe `self.df` contains a 'Churn' column and optionally a 'customerID' column.
+        - The method ensures that the indices in `feature_df` and `feature_df_test` exist in `self.df`.
+        - The method handles infinite values by replacing them with NaN.
+        - The method removes columns with a single unique value from the feature dataframes.
+        """
         # Reset and ensure integer index in feature_df
         feature_df = feature_df.reset_index()
         feature_df['index'] = feature_df['index'].astype(int)
@@ -158,6 +298,9 @@ class FeatureGenerater:
             aligned_churn['Churn'] = self.df.loc[feature_df['index'],'Churn'].reset_index(drop=True)
             aligned_churn['customerID'] = self.df.loc[feature_df['index'],'customerID'].reset_index(drop=True)
             feature_df['customerID'] = aligned_churn['customerID']
+        else:    
+            aligned_churn = pd.DataFrame()
+            aligned_churn['Churn'] = self.df.loc[feature_df['index'],'Churn'].reset_index(drop=True)
 
         feature_df['Churn'] = aligned_churn['Churn']
 
@@ -183,7 +326,10 @@ class FeatureGenerater:
                 aligned_churn['Churn'] = self.df.loc[feature_df_test['index'],'Churn'].reset_index(drop=True)
                 aligned_churn['customerID'] = self.df.loc[feature_df_test['index'],'customerID'].reset_index(drop=True)
                 feature_df_test['customerID'] = aligned_churn['customerID']
-
+            else:
+                aligned_churn = pd.DataFrame()
+                aligned_churn['Churn'] = self.df.loc[feature_df_test['index'],'Churn'].reset_index(drop=True)
+            feature_df_test['Churn'] = aligned_churn['Churn']
             feature_df_test = feature_df_test.drop('index', axis=1)
             feature_df_test = self.__clean_feature_names(feature_df_test)
             feature_df_test = self.__remove_duplicate_columns(feature_df_test)
@@ -200,6 +346,23 @@ class FeatureGenerater:
 
 
 class FeatureTransformer:
+    """
+    A class used to transform features for a customer churn prediction model.
+    
+    Parameters
+    ----------
+    train_set : pandas.DataFrame
+        The training dataset.
+    test_set : pandas.DataFrame, optional
+        The test dataset (default is None).
+    num_list : list
+        List of numerical feature names.
+    cat_list : list
+        List of categorical feature names.
+    col_transfm : sklearn.compose.ColumnTransformer
+        Column transformer for preprocessing features.
+    
+    """ 
     def __init__(self, train_set, test_set=None):
         self.train_set = train_set  # Training dataset
         self.test_set = test_set  # Test dataset
@@ -228,6 +391,24 @@ class FeatureTransformer:
 
 
     def transform(self):
+        """
+        Transforms the training and test datasets using the column transformer.
+        This method performs the following steps:
+        1. Fits and transforms the training set using the column transformer.
+        2. Converts the transformed training set to a DataFrame with feature names.
+        3. Renames the 'remainder__Churn' column to 'Churn' and 'remainder__customerID' to 'customerID' if present.
+        4. Ensures all data in the training set is of type float64.
+        5. If a test set is provided:
+            a. Transforms the test set using the already fitted column transformer.
+            b. Converts the transformed test set to a DataFrame with feature names.
+            c. Renames the 'remainder__Churn' column to 'Churn' and 'remainder__customerID' to 'customerID' if present.
+            d. Ensures all data in the test set is of type float64.
+            e. Returns both the transformed training and test sets.
+        
+        Returns:
+            pd.DataFrame: Transformed training set.
+            tuple(pd.DataFrame, pd.DataFrame): Transformed training and test sets if test set is provided.
+        """
         # Fit and transform the training set
         self.train_set = self.col_transfm.fit_transform(self.train_set)
 

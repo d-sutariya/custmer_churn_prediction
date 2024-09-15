@@ -44,6 +44,20 @@ def main(input_filepath):
     load_and_split_data(input_filepath,output_dir)
 
 def load_and_split_data(input_filepath,output_dir):
+
+    """
+    Load data from the given input file path, preprocess it, split it into training, validation, and test sets,
+    handle class imbalance using SMOTE, and save the resulting datasets to the specified output directory.
+    Parameters
+    ----------
+    input_filepath : str
+        Path to the input data file.
+    output_dir : str or pathlib.Path
+        Directory where the processed datasets will be saved.
+    Returns
+    -------
+    None
+    """
     
     warnings.filterwarnings("ignore")
     np.random.seed(42)
@@ -77,6 +91,31 @@ def load_and_split_data(input_filepath,output_dir):
     transform_and_save_data(encd_df,train_set,test_set,train_set_splitted,val_set,smoted_df,output_dir)
 
 def transform_and_save_data(encd_df,train_set,test_set,train_set_splitted,val_set,smoted_df,output_dir):
+
+    """
+    Transforms and saves various datasets by generating features and applying transformations.
+    This function performs the following steps:
+    1. Generates features for the SMOTED dataset.
+    2. Generates features for the training and validation sets.
+    3. Generates features for the final training and test sets.
+    4. Transforms the generated features.
+    5. Saves the transformed datasets to the specified output directory.
+    :param encd_df: DataFrame containing encoded data.
+    :type encd_df: pandas.DataFrame
+    :param train_set: DataFrame containing the training set.
+    :type train_set: pandas.DataFrame
+    :param test_set: DataFrame containing the test set.
+    :type test_set: pandas.DataFrame
+    :param train_set_splitted: DataFrame containing the split training set.
+    :type train_set_splitted: pandas.DataFrame
+    :param val_set: DataFrame containing the validation set.
+    :type val_set: pandas.DataFrame
+    :param smoted_df: DataFrame containing the SMOTED dataset.
+    :type smoted_df: pandas.DataFrame
+    :param output_dir: Directory where the transformed datasets will be saved.
+    :type output_dir: pathlib.Path
+    :return: None
+    """
     
     trans_list =  [
     'absolute_diff',

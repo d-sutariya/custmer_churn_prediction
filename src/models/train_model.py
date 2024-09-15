@@ -9,6 +9,21 @@ import warnings
 
 
 def main(model_path,dataset_path):
+
+    """
+    Train a LightGBM model using an existing model as a starting point and save the final model.
+    
+    Parameters
+    ----------
+    model_path : str
+        Path to the pre-trained model file relative to the root directory.
+    dataset_path : str
+        Path to the training dataset file relative to the root directory.
+    
+    Returns
+    -------
+    None
+    """
     root_dir = Path(os.getenv('ROOT_DIRECTORY'))
     model_path =root_dir/model_path
     train_df = pd.read_csv(root_dir/dataset_path)

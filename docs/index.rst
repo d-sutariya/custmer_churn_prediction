@@ -12,7 +12,7 @@ Contents:
 
    getting-started
    commands
-
+   source/modules
 
 
 Indices and tables

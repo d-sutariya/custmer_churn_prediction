@@ -1,0 +1,12 @@
+src.models package
+==================
+
+
+src.models.train\_model module
+------------------------------
+
+.. automodule:: src.models.train_model
+   :members:
+   :undoc-members:
+   :show-inheritance:
+

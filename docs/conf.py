@@ -11,8 +11,16 @@
 # All configuration values have a default; values that are commented out
 # serve to show the default.
 
-import os
 import sys
+import os
+from pathlib import Path
+
+# Add the src directory to the Python path
+
+sys.path.append(str(Path(__file__).resolve().parents[1]))
+# print(sys.path)
+import src 
+import data
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
@@ -242,3 +250,9 @@ texinfo_documents = [
 
 # How to display URL addresses: 'footnote', 'no', or 'inline'.
 # texinfo_show_urls = 'footnote'
+
+extensions = [
+    'sphinx.ext.autodoc',
+    'sphinx.ext.napoleon',  # For Google/NumPy style docstrings
+    'sphinx_autodoc_typehints',  # Optional for type hints
+]
