@@ -237,6 +237,5 @@ if __name__=="__main__":
         'accuracy': accuracy
     }
 
-    for key, value in metrics.items():
-        print(f"{key}:-", value)
+    
 

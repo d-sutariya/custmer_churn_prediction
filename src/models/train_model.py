@@ -41,8 +41,9 @@ def main(model_path,dataset_path):
                                 lgb.early_stopping(stopping_rounds=50)
                             ])
 
-    final_model_path = root_dir/'models'/'final_model.txt'
+    final_model_path = root_dir/'models'/'final_trained_model.txt'
     final_model.save_model(final_model_path)
+    print("model saved in project_root/models/final_trained_model.txt")
 
 if __name__ == '__main__':
     parser = ArgumentParser(description="this file is for training the model")

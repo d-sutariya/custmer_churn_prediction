@@ -193,7 +193,7 @@ def transform_and_save_data(encd_df,train_set,test_set,train_set_splitted,val_se
     transformed_featured_train_set.to_csv(output_dir/'processed'/'transformed_featured_train_set.csv',index=False)
     transformed_featured_test_set.to_csv(output_dir/'processed'/'transformed_featured_test_set.csv',index=False)
     transformed_featured_val_set.to_csv(output_dir/'processed'/'transformed_featured_val_set.csv',index=False)
-
+    print("transformed datasets are saved in the project_root/data/processed")
 
 if __name__ == '__main__':
 
@@ -212,8 +212,8 @@ if __name__ == '__main__':
     # find .env automagically by walking up directories until it's found, then
     # load up the .env entries as environment variables
     load_dotenv(find_dotenv())
-
-    main(args.input_file_path)
+    root_dir = Path(os.getenv('ROOT_DIRECTORY'))
+    main(root_dir/args.input_file_path)
 
     
     

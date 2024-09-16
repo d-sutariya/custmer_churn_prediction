@@ -1,0 +1,76 @@
+schema: '2.0'
+stages:
+  make_data:
+    cmd: python ../../src/data/make_dataset.py --input_file_path data/raw/WA_Fn-UseC_-Telco-Customer-Churn.csv
+    deps:
+    - path: ../../data/raw/WA_Fn-UseC_-Telco-Customer-Churn.csv
+      hash: md5
+      md5: 0f9de68e012bd3aed5fa7cdc9fc421af
+      size: 977501
+    - path: ../../src/data/make_dataset.py
+      hash: md5
+      md5: 9fa91b658dbd07c46856a747c07f0a23
+      size: 9128
+    outs:
+    - path: ../../data/processed/transformed_featured_final_train_set.csv
+      hash: md5
+      md5: 51ec8709d206111527344380c6bc6fb6
+      size: 3975689
+    - path: ../../data/processed/transformed_featured_smoted_train_set.csv
+      hash: md5
+      md5: 0c379349176e2cfb0a319852f5429a91
+      size: 4970334
+    - path: ../../data/processed/transformed_featured_test_set.csv
+      hash: md5
+      md5: c0390a80ca474df48f28de4b9e4749bd
+      size: 996347
+    - path: ../../data/processed/transformed_featured_train_set.csv
+      hash: md5
+      md5: 2c765284f6d26d523a596b8c6d78161a
+      size: 3383468
+    - path: ../../data/processed/transformed_featured_val_set.csv
+      hash: md5
+      md5: 4b475bb1580bb72962d2723f7f34ceb6
+      size: 599558
+  train_model:
+    cmd: python ../../src/models/train_model.py --dataset_path data/processed/transformed_featured_final_train_set.csv
+      --model_path models/final_model.txt
+    deps:
+    - path: ../../data/processed/transformed_featured_final_train_set.csv
+      hash: md5
+      md5: 51ec8709d206111527344380c6bc6fb6
+      size: 3975689
+    - path: ../../models/final_model.txt
+      hash: md5
+      md5: f9e5a7e8732550f3d69226d2c05a43eb
+      size: 22183590
+    - path: ../../src/models/train_model.py
+      hash: md5
+      md5: 050b11d1da900dfd6c577ce6be66868e
+      size: 2285
+    outs:
+    - path: ../../models/final_trained_model.txt
+      hash: md5
+      md5: cdb074078c6f8205314490e68063d49b
+      size: 28302444
+  predict_model:
+    cmd: python ../../src/models/predict_model.py --test_file_path data/processed/transformed_featured_final_train_set.csv
+      --model_path models/final_model.txt
+    deps:
+    - path: ../../data/processed/transformed_featured_final_train_set.csv
+      hash: md5
+      md5: 51ec8709d206111527344380c6bc6fb6
+      size: 3975689
+    - path: ../../models/final_model.txt
+      hash: md5
+      md5: f9e5a7e8732550f3d69226d2c05a43eb
+      size: 22183590
+    - path: ../../src/models/predict_model.py
+      hash: md5
+      md5: 9151b67a0b108487f3c0e2d773e70fd7
+      size: 1342
+    outs:
+    - path: ../../reports/predictions/preds.csv
+      hash: md5
+      md5: 2345328396c3ec0ac80cc52478350285
+      size: 126487

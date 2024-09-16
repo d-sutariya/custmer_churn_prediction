@@ -1,0 +1,31 @@
+stages:
+  make_data:
+    cmd: python ../../src/data/make_dataset.py --input_file_path data/raw/WA_Fn-UseC_-Telco-Customer-Churn.csv
+    deps: 
+      - ../../data/raw/WA_Fn-UseC_-Telco-Customer-Churn.csv
+      - ../../src/data/make_dataset.py
+    outs:
+      - ../../data/processed/transformed_featured_final_train_set.csv
+      - ../../data/processed/transformed_featured_smoted_train_set.csv
+      - ../../data/processed/transformed_featured_test_set.csv
+      - ../../data/processed/transformed_featured_train_set.csv
+      - ../../data/processed/transformed_featured_val_set.csv
+
+  train_model:
+    cmd: python ../../src/models/train_model.py --dataset_path data/processed/transformed_featured_final_train_set.csv --model_path models/final_model.txt
+    deps:
+      - ../../src/models/train_model.py 
+      - ../../data/processed/transformed_featured_final_train_set.csv
+      - ../../models/final_model.txt
+    outs: 
+     - ../../models/final_trained_model.txt
+
+  predict_model:
+    cmd: python ../../src/models/predict_model.py --test_file_path data/processed/transformed_featured_final_train_set.csv --model_path models/final_model.txt 
+    deps: 
+      - ../../models/final_model.txt
+      - ../../src/models/predict_model.py
+      - ../../data/processed/transformed_featured_final_train_set.csv 
+    outs: 
+      - ../../reports/predictions/preds.csv
+      
