@@ -18,9 +18,9 @@ from pathlib import Path
 # Add the src directory to the Python path
 
 sys.path.append(str(Path(__file__).resolve().parents[1]))
-# print(sys.path)
+
 import src 
-import data
+import src.data.data_utils
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
@@ -34,7 +34,12 @@ import data
 
 # Add any Sphinx extension module names here, as strings. They can be extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
-extensions = []
+
+extensions = [
+    'sphinx.ext.autodoc',
+    'sphinx.ext.napoleon',  # For Google/NumPy style docstrings
+    'sphinx_autodoc_typehints',  # Optional for type hints
+]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -136,7 +141,7 @@ html_static_path = ['_static']
 
 # If true, SmartyPants will be used to convert quotes and dashes to
 # typographically correct entities.
-# html_use_smartypants = True
+html_use_smartypants = True
 
 # Custom sidebar templates, maps document names to template names.
 # html_sidebars = {}
@@ -158,10 +163,10 @@ html_static_path = ['_static']
 # html_show_sourcelink = True
 
 # If true, "Created using Sphinx" is shown in the HTML footer. Default is True.
-# html_show_sphinx = True
+html_show_sphinx = False
 
 # If true, "(C) Copyright ..." is shown in the HTML footer. Default is True.
-# html_show_copyright = True
+html_show_copyright = False
 
 # If true, an OpenSearch description file will be output, and all pages will
 # contain a <link> tag referring to it.  The value of this option must be the
@@ -251,8 +256,3 @@ texinfo_documents = [
 # How to display URL addresses: 'footnote', 'no', or 'inline'.
 # texinfo_show_urls = 'footnote'
 
-extensions = [
-    'sphinx.ext.autodoc',
-    'sphinx.ext.napoleon',  # For Google/NumPy style docstrings
-    'sphinx_autodoc_typehints',  # Optional for type hints
-]

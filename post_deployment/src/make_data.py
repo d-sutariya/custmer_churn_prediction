@@ -20,12 +20,14 @@ def main(batch_train_file_path,sliding_window_path):
 
     """
     Main function to process and transform batch training data.
+    
     Parameters
     ----------
     batch_train_file_path : str
         Path to the batch training data file.
     sliding_window_path : str
         Path to the sliding window data file.
+    
     Returns
     -------
     None

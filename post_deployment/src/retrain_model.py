@@ -15,12 +15,14 @@ def main(batch_train_path,model_path):
 
     """
     Retrains a LightGBM model using a new batch of training data and saves the updated model.
+    
     Parameters
     ----------
     batch_train_path : str
         The path to the CSV file containing the new batch of training data.
     model_path : str
         The path to the existing LightGBM model file to be retrained.
+    
     Returns
     -------
     None

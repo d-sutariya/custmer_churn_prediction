@@ -12,12 +12,14 @@ def main(model_path , pred_path):
 
     """
     Main function to load a pre-trained LightGBM model and make predictions on a given dataset.
+    
     Parameters
     ----------
     model_path : str
         Path to the pre-trained LightGBM model file relative to the root directory.
     pred_path : str
         Path to the CSV file containing the dataset for which predictions are to be made, relative to the root directory.
+    
     Returns
     -------
     None
