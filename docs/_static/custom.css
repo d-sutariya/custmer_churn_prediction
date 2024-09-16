@@ -1,0 +1,68 @@
+
+
+/* 
+body {
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+.header {
+    background-color: #0066cc;
+    color: white;
+}
+
+
+.highlight {
+    background-color: #ffffcc;
+    border-left: 5px solid #0066cc;
+    padding: 10px;
+}
+
+.highlight .code {
+    background-color: #333;
+    color: #f4f4f4;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+a {
+    color: #0066cc;
+}
+
+h1, h2, h3 {
+    color: #0066cc;
+} */
+
+/* custom.css */
+
+/* General body styling */
+body {
+    background-color: #000000; /* Black background */
+    color: #FFFFFF; /* White text */
+}
+
+/* Important words in deep to light blue */
+strong, .highlight, .important {
+    color: #0099FF; /* Deep blue */
+}
+
+/* Commands in pink */
+.highlight pre, code, .highlight .k {
+    color: #FF66CC; /* Pink */
+}
+
+/* Parameters and return types in blue */
+.highlight .n, .highlight .s, .highlight .p {
+    color: #0099FF; /* Blue */
+}
+
+/* Additional styles to enhance readability */
+a, .reference, .reference.internal {
+    color: #66CCFF; /* Light blue for links */
+}
+
+code, pre {
+    background-color: #333333; /* Darker background for code */
+    color: #FFCCFF; /* Light pink for code text */
+}
+
