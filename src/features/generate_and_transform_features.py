@@ -202,7 +202,7 @@ class FeatureGenerater:
             root_dir = Path(os.getenv('ROOT_DIRECTORY'))
 
             # Ensure that the directory exists
-            feature_dir = root_dir / 'reports' / 'feature_dfs'
+            feature_dir = root_dir / 'reports' / 'feature_definations'
             feature_dir.mkdir(parents=True, exist_ok=True)
 
             # Now save the features

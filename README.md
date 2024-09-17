@@ -122,7 +122,7 @@ Before you dive into the data, let’s get your environment set up:
 
     ```bash
     cd customer_churn_prediction
-    python src/config/setup_project.py
+    python src/config/setup_project.py 
   
     ```
 
@@ -135,7 +135,7 @@ Transform raw customer data into a training-ready dataset with the following com
 - **Run the Transformation Script:**
   
     ```bash
-    python src/data/make_dataset.py
+    python src/data/make_dataset.py --input_file_path data/raw/WA_Fn-UseC_-Telco-Customer-Churn.csv
     ```
 
 ***Curious to see the process in action?*** Explore my Jupyter notebooks for an in-depth look!
