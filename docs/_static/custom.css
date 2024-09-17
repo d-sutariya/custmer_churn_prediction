@@ -1,68 +1,43 @@
+/* Colors for headers and specific tags */
 
-
-/* 
-body {
-    background-color: #f4f4f4;
-    color: #333;
+/* Dark blue color for h1 and h3 */
+h1, h3 {
+    color: #00308F; /* Dark blue for h1 and h3 */
 }
 
-.header {
-    background-color: #0066cc;
-    color: white;
+/* Pink color for h2 and dt tags */
+h2, dt {
+    color: #C70039; /* Pink color for h2 and dt tags */
 }
 
-
-.highlight {
-    background-color: #ffffcc;
-    border-left: 5px solid #0066cc;
-    padding: 10px;
-}
-
-.highlight .code {
-    background-color: #333;
-    color: #f4f4f4;
-    border-radius: 5px;
-    padding: 10px;
-}
-
-a {
-    color: #0066cc;
-}
-
-h1, h2, h3 {
-    color: #0066cc;
-} */
-
-/* custom.css */
-
-/* General body styling */
-body {
-    background-color: #000000; /* Black background */
-    color: #FFFFFF; /* White text */
-}
-
-/* Important words in deep to light blue */
-strong, .highlight, .important {
-    color: #0099FF; /* Deep blue */
-}
-
-/* Commands in pink */
-.highlight pre, code, .highlight .k {
-    color: #FF66CC; /* Pink */
-}
-
-/* Parameters and return types in blue */
-.highlight .n, .highlight .s, .highlight .p {
-    color: #0099FF; /* Blue */
-}
-
-/* Additional styles to enhance readability */
-a, .reference, .reference.internal {
-    color: #66CCFF; /* Light blue for links */
-}
-
+/* Additional styling for code blocks and inline code */
 code, pre {
-    background-color: #333333; /* Darker background for code */
-    color: #FFCCFF; /* Light pink for code text */
+    color: #ff69b4; /* Pink color for code commands */
+/* Dark background for code blocks */
+    border-radius: 4px;
+    padding: 2px 4px;
 }
 
+/* Parameter and return types color */
+.parameter, .type, .return {
+    color: #1e90ff; /* Blue color for parameters and return types */
+}
+
+/* Important words color */
+strong, .highlight {
+    color: #1e90ff; /* Deep blue for important words */
+}
+
+/* Background and text colors for the body */
+
+/* Links color */
+a {
+    color: #87ceeb; /* Light blue for links */
+}
+
+/* Blockquotes */
+blockquote {
+ /* Slightly lighter background for blockquotes */
+    border-left: 4px solid #1e90ff; /* Blue border for blockquotes */
+    padding: 10px;
+}

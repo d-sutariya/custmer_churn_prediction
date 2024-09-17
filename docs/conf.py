@@ -38,8 +38,11 @@ import src.data.data_utils
 extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.napoleon',  # For Google/NumPy style docstrings
-    'sphinx_autodoc_typehints',  # Optional for type hints
-]
+    'sphinx_autodoc_typehints',
+          'sphinx.ext.viewcode',
+    'sphinx.ext.githubpages',
+]  # Optional for type hints
+
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -104,16 +107,24 @@ pygments_style = 'sphinx'
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
+html_theme = 'furo'
 
-html_theme = 'sphinx_rtd_theme'
+# html_theme_options = {
+#     'style_nav_header_background': '#0066cc',
+#     'logo_only': True,
+# }
+
 html_theme_options = {
-    'style_nav_header_background': '#0066cc',
-    'logo_only': True,
+    "dark_mode": True,
 }
 
 html_static_path = ['_static']
 
 # Custom CSS to style the documentation
+html_css_files = [
+    'custom.css',
+]
+
 def setup(app):
     app.add_css_file('custom.css')
 # Theme options are theme-specific and customize the look and feel of a theme

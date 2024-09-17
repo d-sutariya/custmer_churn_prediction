@@ -7,18 +7,13 @@ from sklearn.impute import SimpleImputer
 class DataLoader:
     """
     A class used to load and preprocess customer churn data.
+    
     Parameters
     ----------
     file_path : str
         The path to the CSV file containing the data.
     df : pandas.DataFrame or None
         The DataFrame that holds the loaded data.
-    Methods
-    -------
-    load_data(drop_customer_id=True)
-        Loads data from the CSV file, performs initial preprocessing, and returns the DataFrame.
-    preprocess_data()
-        Further preprocesses the data by handling missing values, creating dummy variables, and returning the processed DataFrame.
     """
 
 
@@ -30,16 +25,20 @@ class DataLoader:
 
         """
         Load and preprocess customer churn data from a CSV file.
+        
         This method performs the following operations:
+        
         1. Loads data from the CSV file specified by `self.file_path`.
         2. Replaces the 'SeniorCitizen' column values: 0 -> "No", 1 -> "Yes".
         3. Converts the 'TotalCharges' column to numeric, coercing errors to NaN.
         4. Replaces the 'Churn' column values: "Yes" -> 1, "No" -> 0.
         5. Optionally drops the 'customerID' column and resets the index.
+        
         Parameters
         ----------
         drop_customer_id : bool, optional
             If True, drops the 'customerID' column from the DataFrame (default is True).
+        
         Returns
         -------
         pd.DataFrame
@@ -66,11 +65,13 @@ class DataLoader:
     def preprocess_data(self):
         """
         Preprocesses the data by performing the following steps:
+        
         1. Drops columns with more than 70% missing values.
         2. Selects numerical columns and drops those with fewer than 5 unique values (excluding 'index').
         3. Imputes missing values in numerical columns using the median strategy.
         4. Creates dummy variables for categorical features, excluding 'Churn' and 'customerID'.
         5. Adds the 'Churn' column back to the processed DataFrame.
+        
         Returns:
             pd.DataFrame: The preprocessed DataFrame with dummy variables and imputed values.
         """
@@ -111,8 +112,10 @@ def split_data(dummy_df):
     """
     Splits the input DataFrame into training, validation, and test sets.
 
+    
     The function performs the following splits:
-    1. Splits the input DataFrame into a training set and a test set.
+    
+        1. Splits the input DataFrame into a training set and a test set.
     2. Further splits the training set into a smaller training set and a validation set.
 
     The splits are stratified based on the 'Churn' column to ensure that the class distribution is preserved in each subset.

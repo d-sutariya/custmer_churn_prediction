@@ -393,12 +393,14 @@ class FeatureTransformer:
     def transform(self):
         """
         Transforms the training and test datasets using the column transformer.
-        This method performs the following steps:
+        This method performs the following steps:   
+        
         1. Fits and transforms the training set using the column transformer.
         2. Converts the transformed training set to a DataFrame with feature names.
         3. Renames the 'remainder__Churn' column to 'Churn' and 'remainder__customerID' to 'customerID' if present.
         4. Ensures all data in the training set is of type float64.
         5. If a test set is provided:
+        
             a. Transforms the test set using the already fitted column transformer.
             b. Converts the transformed test set to a DataFrame with feature names.
             c. Renames the 'remainder__Churn' column to 'Churn' and 'remainder__customerID' to 'customerID' if present.

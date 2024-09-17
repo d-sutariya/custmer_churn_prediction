@@ -2,6 +2,8 @@ from pathlib import Path
 import os
 import click
 from dotenv import find_dotenv, load_dotenv, set_key
+import webbrowser
+import time 
 
 @click.command()
 @click.argument('root_dir', type=click.Path(), required=False)
@@ -9,6 +11,7 @@ def main(root_dir=None):
     """
     Sets up the project environment by creating a root directory and setting environment variables.
     This function performs the following steps:
+    
     1. Checks if a .env file exists in the current directory. If not, it creates one.
     2. If `root_dir` is not provided, it sets the current working directory as the root directory.
     3. Creates the root directory if it does not exist.
@@ -18,10 +21,12 @@ def main(root_dir=None):
        - MLFLOW_TRACKING_PASSWORD: The password for MLflow tracking.
        - MLFLOW_TRACKING_URI: The URI for MLflow tracking.
        - DAGSHUB_USER_TOKEN: The user token for DagsHub.
+    
     Parameters
     ----------
     root_dir : str or None, optional
         The path to the root directory. If None, the current working directory will be used.
+    
     Returns
     -------
     None
@@ -48,6 +53,10 @@ def main(root_dir=None):
     set_key(env_path, 'DAGSHUB_USER_TOKEN', 'fc957a0e9846b45be51bcea1a3ea28f7a3f236aa')
 
     print(f"Project environment variables have been set in {env_path.resolve()}")
+    print("now you are redirecting to the getting started manual ...")
+    time.sleep(4) 
+    getting_started_path = "file:///"/root_dir/'docs'/'_build'/'html'/'getting-started.html'
+    webbrowser.open(getting_started_path,new=2)
 
 if __name__ == '__main__':
     load_dotenv(find_dotenv())

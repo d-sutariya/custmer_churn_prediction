@@ -1,57 +1,48 @@
-Customer Churn Analysis
-==============================
+# Customer Churn Analysis
 
-It is based on telecom customer churn
+This project focuses on telecom customer churn analysis and prediction using machine learning techniques.
 
-Project Organization
-------------
+## Project Organization
 
-    ├── LICENSE
-    ├── Makefile           <- Makefile with commands like `make data` or `make train`
-    ├── README.md          <- The top-level README for developers using this project.
-    ├── data
-    │   ├── external       <- Data from third party sources.
-    │   ├── interim        <- Intermediate data that has been transformed.
-    │   ├── processed      <- The final, canonical data sets for modeling.
-    │   └── raw            <- The original, immutable data dump.
-    │
-    ├── docs               <- A default Sphinx project; see sphinx-doc.org for details
-    │
-    ├── models             <- Trained and serialized models, model predictions, or model summaries
-    │
-    ├── notebooks          <- Jupyter notebooks. Naming convention is a number (for ordering),
-    │                         the creator's initials, and a short `-` delimited description, e.g.
-    │                         `1.0-jqp-initial-data-exploration`.
-    │
-    ├── references         <- Data dictionaries, manuals, and all other explanatory materials.
-    │
-    ├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
-    │   └── figures        <- Generated graphics and figures to be used in reporting
-    │
-    ├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
-    │                         generated with `pip freeze > requirements.txt`
-    │
-    ├── setup.py           <- makes project pip installable (pip install -e .) so src can be imported
-    ├── src                <- Source code for use in this project.
-    │   ├── __init__.py    <- Makes src a Python module
-    │   │
-    │   ├── data           <- Scripts to download or generate data
-    │   │   └── make_dataset.py
-    │   │
-    │   ├── features       <- Scripts to turn raw data into features for modeling
-    │   │   └── build_features.py
-    │   │
-    │   ├── models         <- Scripts to train models and then use trained models to make
-    │   │   │                 predictions
-    │   │   ├── predict_model.py
-    │   │   └── train_model.py
-    │   │
-    │   └── visualization  <- Scripts to create exploratory and results oriented visualizations
-    │       └── visualize.py
-    │
-    └── tox.ini            <- tox file with settings for running tox; see tox.readthedocs.io
-
-
---------
-
-<p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
+```bash
+├── README.md           <- The top-level README for developers using this project.
+├── data
+│   ├── external        <- Data from third-party sources.
+│   ├── interim         <- Intermediate data that has been transformed.
+│   ├── processed       <- Final, canonical datasets ready for modeling.
+│   └── raw             <- The original, immutable data dump.
+│
+├── docs                <- Project documentation.
+│
+├── models              <- Trained and serialized models.
+│
+├── notebooks           <- Jupyter notebooks. Naming convention is a number (for ordering),
+│                         the creator's initials, and a short `-` delimited description, e.g.
+│                         `1.0-jqp-initial-data-exploration`.
+│
+├── post_deployment     <- Scripts related to post-deployment activities.
+│
+├── reports             <- Feature transformation definitions, predictions, and mlflow runs.
+│
+├── requirements.txt    <- The requirements file for reproducing the analysis environment.
+│
+├── setup.py            <- Makes project pip installable (pip install -e .) so src can be imported.
+│
+├── src                 <- Source code for use in this project.
+│   ├── config          <- Script for setting up the project locally.
+│   ├── data            <- Scripts to download or generate data.
+│   │   ├── make_dataset.py
+│   │   └── data_utils.py <- Data processing utilities.
+│   ├── features        <- Scripts to turn raw data into features for modeling.
+│   │   └── generate_and_transform_features.py <- Generate and transform features using Featuretools.
+│   ├── models          <- Scripts to train models and use them for predictions.
+│   │   ├── predict_model.py
+│   │   └── train_model.py
+│   ├── optimization    <- Scripts related to model optimization.
+│   │   ├── ensemble_utils.py <- Utilities for ensembling models.
+│   │   ├── model_optimization.py <- Manual model optimization.
+│   │   └── tuning_and_tracking.py <- Hyperparameter tuning and tracking using MLflow and DagsHub.
+│   ├── pipeline        <- DVC pipeline for data cleaning to model predictions.
+│   │   └── dvc.yaml    <- Full pipeline configuration.
+│
+└── tox.ini             <- Tox file with settings for running tests and managing environments.
