@@ -85,5 +85,5 @@ target/
 # Mypy cache
 .mypy_cache/
 
-/.dvc/
-/myenv/
+.dvc/
+myenv/
