@@ -1,8 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-get_ipython().run_line_magic('load_ext', 'autoreload')
-get_ipython().run_line_magic('autoreload', '2')
 
 
 import sys
@@ -19,18 +14,27 @@ import re
 import lightgbm as lgb
 import xgboost as xgb
 import catboost as cb
+from pathlib import Path
+from dotenv import load_dotenv
+
 from sklearn.metrics import roc_auc_score,accuracy_score,recall_score,f1_score,precision_score
 from optimization.ensemble_utils import *
 
 
-transformed_featured_train_set = pd.read_csv(r"../data/processed/transformed_featured_train_set.csv")
-transformed_featured_val_set = pd.read_csv(r"../data/processed/transformed_featured_val_set.csv")
-transformed_featured_test_set = pd.read_csv(r"../data/processed/transformed_featured_test_set.csv")
-transformed_featured_final_train_set = pd.read_csv(r"../data/processed/transformed_featured_final_train_set.csv")
-lgb_featured_study = pd.read_csv(r"../reports/optemization-study-reports/lgb_featured_study.csv")
-xgb_featured_study = pd.read_csv(r"../reports/optemization-study-reports/xgb_featured_study.csv")
-catboost_featured_study = pd.read_csv(r"../reports/optemization-study-reports/catboost_featured_study.csv")
-nn_featured_study = pd.read_csv(r"../reports/optemization-study-reports/nn_featured_study.csv")
+env_path = Path('.env')
+load_dotenv(env_path)
+
+root_dir = Path(os.getenv('ROOT_DIRECTORY'))
+
+
+transformed_featured_train_set = pd.read_csv(root_dir/'data'/'processed'/"transformed_featured_train_set.csv")
+transformed_featured_val_set = pd.read_csv(root_dir/'data'/'processed'/"transformed_featured_val_set.csv")
+transformed_featured_test_set = pd.read_csv(root_dir/'data'/'processed'/"transformed_featured_test_set.csv")
+transformed_featured_final_train_set = pd.read_csv(root_dir/'data'/'processed'/"transformed_featured_final_train_set.csv")
+lgb_featured_study = pd.read_csv(root_dir/'reports'/"optemization-study-reports/lgb_featured_study.csv")
+xgb_featured_study = pd.read_csv(root_dir/'reports'/"optemization-study-reports/xgb_featured_study.csv")
+catboost_featured_study = pd.read_csv(root_dir/'reports'/"optemization-study-reports/catboost_featured_study.csv")
+nn_featured_study = pd.read_csv(root_dir/'reports'/"optemization-study-reports/nn_featured_study.csv")
 
 
 # This notebook includes several functions that handle tasks such as dropping unnecessary columns from a DataFrame, removing json words from feature naems, generating predictions using multiple models, performing soft and weighted voting for ensemble methods, and cleaning hyperparameters. Additionally, it contains a function to create and compile a neural network model using TensorFlow/Keras. 
@@ -164,7 +168,7 @@ if run_ensemble_trials:
     ensemble_results_df = pd.DataFrame(data)
     
 else:
-    ensemble_results_df = pd.read_csv(r"../reports/optemization-study-reports/ensemble_study.csv")
+    ensemble_results_df = pd.read_csv(root_dir/'reports'/'optemization-study-reports'/"ensemble_study.csv")
     ensemble_results_df = ensemble_results_df.drop(columns="Unnamed: 0")
 
 
@@ -175,8 +179,6 @@ ensemble_results_df.iloc[ensemble_results_df['value'].idxmax()]
 # model's performance which has highest recall
 ensemble_results_df.iloc[ensemble_results_df['recall'].idxmax()]
 
-
-# 
 
 # model's performance which has highest precision
 ensemble_results_df.iloc[ensemble_results_df['precision'].idxmax()]

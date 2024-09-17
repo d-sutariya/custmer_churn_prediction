@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-get_ipython().run_line_magic('load_ext', 'autoreload')
-get_ipython().run_line_magic('autoreload', '2')
-
 
 import sys
 import os
@@ -13,12 +7,13 @@ sys.path.append(os.path.abspath(os.path.join('..', 'src')))
 
 
 import numpy as np
-import pandas as pd
 from sklearn.metrics import recall_score,accuracy_score,precision_score
 from imblearn.over_sampling import SMOTE
-import lightgbm as lgb
 from lightgbm import LGBMClassifier 
 import warnings
+import os
+from pathlib import Path
+from dotenv import load_dotenv
 
 
 from data.data_utils import DataLoader,split_data
@@ -26,6 +21,13 @@ from data.data_utils import DataLoader,split_data
 
 warnings.filterwarnings("ignore")
 np.random.seed(42)
+
+
+env_path = Path('.env')
+load_dotenv(env_path)
+
+root_dir = Path(os.getenv('ROOT_DIRECTORY'))
+data_path = root_dir/'data'/'raw'/'WA_Fn-UseC_-Telco-Customer-Churn.csv'
 
 
 # # Data preprocessing
@@ -37,7 +39,7 @@ np.random.seed(42)
 # 
 
 #load the data
-data_loader = DataLoader("../data/raw/WA_Fn-UseC_-Telco-Customer-Churn.csv")
+data_loader = DataLoader(data_path)
 df = data_loader.load_data()
 encd_df = data_loader.preprocess_data()
 
@@ -61,6 +63,14 @@ X_train_smoted,y_train_smoted = SMOTE().fit_resample(X_train_splitted,y_train_sp
 smoted_df = X_train_smoted
 smoted_df['Churn'] = y_train_smoted
 smoted_df = smoted_df.drop(columns='index').reset_index()
+
+
+# train_set.to_csv(root_dir/'data'/'interim'/'train_set.csv',index=False)
+# encd_df.to_csv(root_dir/'data'/'interim'/'encd_df.csv',index=False)
+# smoted_df.to_csv(root_dir/'data'/'interim'/'smoted_df.csv',index=False)
+# val_set.to_csv(root_dir/'data'/'interim'/'val_set.csv',index=False)
+# test_set.to_csv(root_dir/'data'/'interim'/'test_set.csv',index=False)
+# train_set_splitted.to_csv(root_dir/'data'/'interim'/'train_set_splitted.csv',index=False)
 
 
 # ### Let us define the base line score for our future work.

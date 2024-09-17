@@ -13,24 +13,31 @@ import lightgbm as lgb
 import mlflow.lightgbm
 from IPython.display import FileLink,display,Image
 from mlflow.tracking import MlflowClient
+from pathlib import Path
+from dotenv import load_dotenv
+
 from sklearn.metrics import roc_auc_score,f1_score,accuracy_score,recall_score,precision_score
 warnings.filterwarnings("ignore")
 
 
-os.environ['MLFLOW_TRACKING_USERNAME'] = 'tnbmarketplace'
-os.environ['MLFLOW_TRACKING_PASSWORD'] = '0d957e7b20c38643e8fd8de6d9d8e1de130caf90'
-os.environ['MLFLOW_TRACKING_URI'] = 'https://dagshub.com/tnbmarketplace/mlflow_experiment_tracking.mlflow'
-os.environ['DAGSHUB_USER_TOKEN'] = "fc957a0e9846b45be51bcea1a3ea28f7a3f236aa"
-get_ipython().system('dagshub login --token "fc957a0e9846b45be51bcea1a3ea28f7a3f236aa"')
+env_path = Path('.env')
+load_dotenv(env_path)
+root_dir = Path(os.getenv('ROOT_DIRECTORY'))
+
+
+os.environ['MLFLOW_TRACKING_USERNAME'] = os.getenv("MLFLOW_TRACKING_USERNAME")
+os.environ['MLFLOW_TRACKING_PASSWORD'] = os.getenv("MLFLOW_TRACKING_PASSWORD")
+os.environ['MLFLOW_TRACKING_URI'] = os.getenv("MLFLOW_TRACKING_URI")
+os.environ['DAGSHUB_USER_TOKEN'] = os.getenv("DAGSHUB_USER_TOKEN")
 
 
 dagshub.init(repo_name='mlflow_experiment_tracking',repo_owner='tnbmarketplace',mlflow=True)
 
 
-transformed_featured_train_set = pd.read_csv(r"../data/processed/transformed_featured_train_set.csv")
-transformed_featured_val_set = pd.read_csv(r"../data/processed/transformed_featured_val_set.csv")
-transformed_featured_test_set = pd.read_csv(r"../data/processed/transformed_featured_test_set.csv")
-transformed_featured_final_train_set = pd.read_csv(r"../data/processed/transformed_featured_final_train_set.csv")
+transformed_featured_train_set = pd.read_csv(root_dir/'data'/'processed'/"transformed_featured_train_set.csv")
+transformed_featured_val_set = pd.read_csv(root_dir/'data'/'processed'/"transformed_featured_val_set.csv")
+transformed_featured_test_set = pd.read_csv(root_dir/'data'/'processed'/"transformed_featured_test_set.csv")
+transformed_featured_final_train_set = pd.read_csv(root_dir/'data'/'processed'/"transformed_featured_final_train_set.csv")
 
 
 # ### Optimization
@@ -139,14 +146,14 @@ def objective(trial):
 # 
 # 
 
-display(Image(r"../reports/figures/Screenshot (154).png"))
+display(Image(root_dir/'reports'/'figures'/"Screenshot (154).png"))
 
 
 # 2. Go to the by clicking here https://dagshub.com/tnbmarketplace/mlflow_experiment_tracking.mlflow 
 # 
 # 3. paste your experiment name in serach bar and search it then click on the your experiment as shown below image. If you want to run experiment done by me write my experiment in the name of the search bar and click on it.
 
-display(Image(r"../reports/figures/Screenshot (155).png"))
+display(Image(root_dir/'reports'/'figures'/"Screenshot (155).png"))
 
 
 if run_trials:
@@ -192,7 +199,7 @@ else:
     print("Skipping trials. Loading pre-existing best model...")
 
     # Load the best model from a saved file
-    best_model = lgb.Booster(model_file=r"../models/model.txt")
+    best_model = lgb.Booster(model_file=root_dir/'models'/"model.txt")
     
     # Prepare training and test datasets
     train_set = lgb.Dataset(transformed_featured_final_train_set.drop(columns='Churn'), label=transformed_featured_final_train_set['Churn'])

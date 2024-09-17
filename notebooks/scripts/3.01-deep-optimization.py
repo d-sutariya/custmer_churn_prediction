@@ -1,31 +1,4 @@
-#!/usr/bin/env python
-# coding: utf-8
 
-# ## Variable Descriptions Guide
-# 
-# - **encd_df**: This is the one-hot encoded dataframe used for model training.
-# - **val_set**: The validation set used to validate the performance of the models during training.
-# - **train_set_splitted**: The remaining part of the training set after splitting out the validation set.
-# - **train_set**: The final training set used for training the models.
-# - **test_set**: The final test set used to evaluate the performance of the trained models.
-# - **X_train_smoted, y_train_smoted**: The training sets after applying SMOTE to handle class imbalance.
-# 
-# 
-# ### Transformed Sets
-# - **transformed_train_set, transformed_test_set**: These are the transformed training and validation sets without feature engineering.
-# i.e transformed datasets on one hot encoded dataframe.
-# - **transformed_featured_train_set, transformed_featured_val_set**: These are the transformed training and validation sets after feature engineering and transformation.
-# - **transformed_featured_final_train_set, transformed_featured_test_set**: The transformed training set (without splitting) and the test set.
-# - **transformed_featured_smoted_train_set, transformed_featured_smoted_test_set**: The transformed SMOTEd training and test sets.
-# 
-# ### Optimization
-# 
-# - **featured_lgb_study, featured_xgb_study, featured_cat_study, featured_ann_study**: These are the optimized studies of the models on the feature-engineered sets.
-# - **org_lgb_study, org_xgb_study, org_cat_study, org_nn_study**: These are the optimized studies of the models on the original sets (i.e., without feature engineering).
-# 
-
-get_ipython().run_line_magic('load_ext', 'autoreload')
-get_ipython().run_line_magic('autoreload', '2')
 
 
 import sys
@@ -41,6 +14,8 @@ import pandas as pd
 import tensorflow as tf
 import optuna
 import warnings
+from pathlib import Path
+from dotenv import load_dotenv
 
 from features.generate_and_transform_features import FeatureTransformer
 from optimization.model_optimizer import ModelOptimizer,save_results,load_results
@@ -53,6 +28,11 @@ optuna.logging.set_verbosity(optuna.logging.CRITICAL)
 np.random.seed(42)
 tf.random.set_seed(42)
 
+env_path = Path('.env')
+load_dotenv(env_path)
+
+root_dir = Path(os.getenv('ROOT_DIRECTORY'))
+
 
 # # Training and Optimization
 
@@ -61,17 +41,17 @@ tf.random.set_seed(42)
 
 # ### ***Warning*** :- It may take few  Hours to run trials.
 
-run_featured_trials = False
-run_org_trials = False
+run_featured_trials = True
+run_org_trials = True
 
 
-transformed_featured_train_set = pd.read_csv(r"../data/processed/transformed_featured_train_set.csv")
-transformed_featured_test_set = pd.read_csv(r"../data/processed/transformed_featured_test_set.csv")
-transformed_featured_final_train_set = pd.read_csv(r"../data/processed/transformed_featured_final_train_set.csv")
-transformed_featured_smoted_train_set = pd.read_csv(r"../data/processed/transformed_featured_smoted_train_set.csv")
-transformed_featured_val_set = pd.read_csv(r"../data/processed/transformed_featured_val_set.csv")
-val_set = pd.read_csv(r"../data/interim/val_set.csv")
-train_set_splitted = pd.read_csv(r"../data/interim/train_set_splitted.csv")
+transformed_featured_train_set = pd.read_csv(root_dir/'data'/'processed'/"transformed_featured_train_set.csv")
+transformed_featured_test_set = pd.read_csv(root_dir/'data'/'processed'/"transformed_featured_test_set.csv")
+transformed_featured_final_train_set = pd.read_csv(root_dir/'data'/'processed'/"transformed_featured_final_train_set.csv")
+transformed_featured_smoted_train_set = pd.read_csv(root_dir/'data'/'processed'/"transformed_featured_smoted_train_set.csv")
+transformed_featured_val_set = pd.read_csv(root_dir/'data'/'processed'/"transformed_featured_val_set.csv")
+val_set = pd.read_csv(root_dir/'data'/'interim'/"val_set.csv")
+train_set_splitted = pd.read_csv(root_dir/'data'/'interim'/"train_set_splitted.csv")
 
 
 if run_featured_trials:

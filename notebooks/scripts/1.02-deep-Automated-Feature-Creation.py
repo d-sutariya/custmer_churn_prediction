@@ -1,8 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-get_ipython().run_line_magic('load_ext', 'autoreload')
-get_ipython().run_line_magic('autoreload', '2')
 
 
 import sys
@@ -17,18 +12,27 @@ import pandas as pd
 import warnings
 from lightgbm import LGBMClassifier
 from sklearn.metrics import accuracy_score,precision_score,recall_score
+from dotenv import load_dotenv
+from pathlib import Path
 
 from features.generate_and_transform_features import FeatureGenerater,FeatureTransformer
 
 warnings.filterwarnings("ignore")
+np.random.seed(42)
 
 
-encd_df = pd.read_csv(r"../data/interim/encd_df.csv")
-smoted_df = pd.read_csv(r"../data/interim/smoted_df.csv")
-val_set = pd.read_csv(r"../data/interim/val_set.csv")
-train_set = pd.read_csv(r"../data/interim/train_set.csv")
-test_set = pd.read_csv(r"../data/interim/test_set.csv")
-train_set_splitted = pd.read_csv(r"../data/interim/train_set_splitted.csv")
+env_path = Path('.env')
+load_dotenv(env_path)
+
+root_dir = Path(os.getenv('ROOT_DIRECTORY'))
+
+
+encd_df = pd.read_csv(root_dir/'data'/'interim'/"encd_df.csv")
+smoted_df = pd.read_csv(root_dir/'data'/'interim'/"smoted_df.csv")
+val_set = pd.read_csv(root_dir/'data'/'interim'/"val_set.csv")
+train_set = pd.read_csv(root_dir/'data'/'interim'/"train_set.csv")
+test_set = pd.read_csv(root_dir/'data'/'interim'/"test_set.csv")
+train_set_splitted = pd.read_csv(root_dir/'data'/'interim'/"train_set_splitted.csv")
 
 
 # The `FeatureGenerater` class is designed to generate features automatically. it entity set from the training and testing datasets and generate features using the **Featuretools** library. It offers methods to handle feature cleaning, remove duplicates, and align the datasets. Additionally, it provides flexibility in choosing transformation and aggregation primitives for feature engineering.
@@ -64,13 +68,13 @@ trans_list =  [
 
 ignore_columns = {
     'smoted_train':['Churn','index'],
-    'val_test':['Churn','index',]
+    'val_test':['Churn','index']
 }
 val_copy = val_set.copy()
 
 # let's generate features for the smoted dataset
 
-feature_gen = FeatureGenerater(smoted_df,val_copy,encd_df)
+feature_gen = FeatureGenerater(encd_df,smoted_df,val_copy)
 feature_gen.Create_Entityset('smoted','smoted_train','val_test','index')
 
 # the below sets will be used for the evaluation of the smoted datasets
@@ -78,9 +82,9 @@ smoted_featured_train_set , smoted_featured_test_set = feature_gen.Generate_Feat
 # let's generate features for the splitted_train , val set
 ignore_columns = {
     'train':['Churn','index'],
-    'test':['Churn','index',]
+    'test':['Churn','index']
 }
-feature_gen = FeatureGenerater(train_set_splitted,val_set,encd_df)
+feature_gen = FeatureGenerater(encd_df,train_set_splitted,val_set)
 feature_gen.Create_Entityset('validation','train','test','index')
 
 # the below sets will be used for the training and validation process
@@ -90,9 +94,9 @@ featured_train_set , featured_val_set = feature_gen.Generate_Features(trans_list
 # below code generate the features for the final_train , test set
 ignore_columns = {
     'final_train':['Churn','index'],
-    'final_test':['Churn','index',]
+    'final_test':['Churn','index']
 }
-feature_gen = FeatureGenerater(train_set,test_set,encd_df)
+feature_gen = FeatureGenerater(encd_df,train_set,test_set)
 feature_gen.Create_Entityset('final','final_train','final_test','index')
  
 # the below sets will be used for the train and test the final model that we will get from the val set

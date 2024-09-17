@@ -33,9 +33,10 @@ The naming convention of the notebooks is as follows:
     - `3.02-deep-Ensembling-and-Optimization.ipynb`: Advanced optimization, including ensemble methods for better predictions and performance.
     - `3.03-deep-experiment-tracking-mlflow-dagshub.ipynb`: Tracking experiments, model versions, and performance using MLflow and DagsHub for complete transparency and reproducibility.
 
+**scripts/**: this folder contains scripts of ipynb files. so that changes in notebooks can be tracked easily . 
+
 ### Key Features of the Notebooks
 
 - **Phase-wise Organization:** Each notebook builds upon the previous one, ensuring a clear progression from data analysis to model optimization.
 - **Detailed Visuals & Insights:** The EDA notebook provides deep insights into customer churn patterns, a key part of this project's value.
 - **End-to-End Workflow:** These notebooks demonstrate the entire lifecycle of the project, from data cleaning to advanced model optimization and experiment tracking.
-
