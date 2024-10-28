@@ -213,17 +213,24 @@ class FeatureGenerator:
             .agg(F.lit(1)).na.fill(0)
         )
         
+        new_column_names = [
+            f"dow_{col_name.split('.')[0]}" if col_name != "order_id" else col_name 
+            for col_name in pivoted_prior_orders_df.columns
+        ]
+        # Apply the renamed columns
+        pivoted_prior_orders_df = pivoted_prior_orders_df.toDF(*new_column_names)
+        
         df_with_count_of_dow_p_prod = (
             self.prior_product_orders.select("order_id", "product_id")
             .join(pivoted_prior_orders_df, on="order_id", how='left')
             .groupBy("product_id")
-            .agg(F.sum("0").alias("distrib_count_of_dow_0_p_prod"),
-                 F.sum("1").alias("distrib_count_of_dow_1_p_prod"),
-                 F.sum("2").alias("distrib_count_of_dow_2_p_prod"),
-                 F.sum("3").alias("distrib_count_of_dow_3_p_prod"),
-                 F.sum("4").alias("distrib_count_of_dow_4_p_prod"),
-                 F.sum("5").alias("distrib_count_of_dow_5_p_prod"),
-                 F.sum("6").alias("distrib_count_of_dow_6_p_prod"))
+            .agg(F.sum("dow_0").alias("distrib_count_of_dow_0_p_prod"),
+                 F.sum("dow_1").alias("distrib_count_of_dow_1_p_prod"),
+                 F.sum("dow_2").alias("distrib_count_of_dow_2_p_prod"),
+                 F.sum("dow_3").alias("distrib_count_of_dow_3_p_prod"),
+                 F.sum("dow_4").alias("distrib_count_of_dow_4_p_prod"),
+                 F.sum("dow_5").alias("distrib_count_of_dow_5_p_prod"),
+                 F.sum("dow_6").alias("distrib_count_of_dow_6_p_prod"))
         )
         
         # Probability it is reordered after the first order
@@ -394,7 +401,10 @@ def generate_test_set_features(user_stats_df,prods_stats_df,user_prod_stats_df,t
         
         result_test_df = (
               
-            test_set.join(
+            test_set.withColumns({
+                  "time_mean_dow_count":F.lit(mean_dow_value),
+                  "time_mean_ohod_count":F.lit(mean_ohod_value)
+            }).join(
                 user_stats_df, on = 'user_id', how = 'left'
             )
             .join(
@@ -403,10 +413,6 @@ def generate_test_set_features(user_stats_df,prods_stats_df,user_prod_stats_df,t
             .join(
                 user_prod_stats_df, on = ['user_id','product_id'], how = 'left'
             )
-            .withColumns({
-                          "time_mean_dow_count":F.lit(mean_dow_value),
-                          "time_mean_ohod_count":F.lit(mean_ohod_value)
-            })
         )
         
     return result_test_df
