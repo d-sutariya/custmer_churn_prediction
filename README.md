@@ -2,7 +2,7 @@
 
 ## Overview
 
-The objective of this project is to identify potential telecom churners, enabling the company to take proactive measures to retain these customers. Using the Kaggle Telco Customer Churn dataset, various machine learning models have been evaluated to achieve this goal.
+The objective of this project is to identify potential telecom churners of TNB telco inc. (hypothetical compony), enabling the company to take proactive measures to retain these customers. Using the  Telco Customer Churn dataset provided by TNB (dataset is available on kaggle), various machine learning models have been evaluated to achieve this goal. You can view the detailed report on ![TNB customer churn report](https://github.com/d-sutariya/custmer_churn_prediction/blob/main/Customer_Churn_Prediction_TNB_Project_Report.pdf)
 
 ## Objective
 
